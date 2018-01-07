@@ -1,9 +1,8 @@
 
 <h1 align="center">MumbleDJ</h1>
 <p align="center"><b>A Mumble bot that plays audio fetched from various media websites.</b></p>
-<p align="center"><a href="https://travis-ci.org/matthieugrieger/mumbledj"><img src="https://travis-ci.org/matthieugrieger/mumbledj.svg?branch=master"/></a> <a href="https://raw.githubusercontent.com/matthieugrieger/mumbledj/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg"/></a> <a href="https://github.com/matthieugrieger/mumbledj/releases"><img src="https://img.shields.io/github/release/matthieugrieger/mumbledj.svg"/></a> <a href="https://goreportcard.com/report/github.com/matthieugrieger/mumbledj"><img src="https://goreportcard.com/badge/github.com/matthieugrieger/mumbledj"/></a> <a href="https://codecov.io/gh/matthieugrieger/mumbledj"><img src="https://img.shields.io/codecov/c/github/matthieugrieger/mumbledj.svg"/></a> <a href="https://gitter.im/matthieugrieger/mumbledj"><img src="https://img.shields.io/gitter/room/matthieugrieger/mumbledj.svg" /></a></p>
 
-<p align="center"><b>Unfortunately, this project is no longer maintained. Don't expect any responses on bug reports, feature requests, etc. Forks are welcome!</b></p>
+Fork of [matthieugrieger's mumbledj](https://github.com/matthieugrieger/mumbledj)
 
 ## Table of Contents
 
@@ -104,35 +103,6 @@ make
 This will place a compiled `mumbledj` binary in the cloned directory if successful. If you would like to make the binary more accessible by adding it to `/usr/local/bin`, simply execute the following:
 ```
 sudo make install
-```
-
-### Docker
-
-You can also use [Docker](https://www.docker.com) to run MumbleDJ.
-
-First you need to clone the MumbleDJ repository to your machine:
-```
-git clone https://github.com/matthieugrieger/mumbledj.git
-```
-
-Assuming you have [Docker installed](https://www.docker.com/products/docker), you will have to build the image:
-```
-docker build -t mumbledj .
-```
-
-And then you can run it, passing the configuration through the command line:
-```
-docker run --rm --name=mumbledj mumbledj --server=SERVER --api_keys.youtube=YOUR_YOUTUBE_API_KEY --api_keys.soundcloud=YOUR_SOUNDCLOUD_API_KEY
-```
-
-In order to run the process as a daemon and restart it automatically on reboot you can use:
-```
-docker run -d --restart=unless-stopped --name=mumbledj mumbledj --server=SERVER --api_keys.youtube=YOUR_YOUTUBE_API_KEY --api_keys.soundcloud=YOUR_SOUNDCLOUD_API_KEY
-```
-
-You can also install Docker on a [Raspberry Pi](https://www.raspberrypi.org/) for instance with [hypriot](http://blog.hypriot.com/getting-started-with-docker-on-your-arm-device/) or with [archlinux](https://archlinuxarm.org/packages/arm/docker). You just need to build the ARM image:
-```
-docker build -f raspberry.Dockerfile -t mumbledj .
 ```
 
 ## Usage
