@@ -1,6 +1,8 @@
 Contributing to MumbleDJ
 ========================
 
+## Keep in mind this is outdated, and was part of original project. If you wanna contribute drop me a mail at code at roshless dot com 
+
 Contributions are always welcome to MumbleDJ. This document will give you some tips and guidelines to follow while implementing your contribution.
 
 ## Table of Contents
