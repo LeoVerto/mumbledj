@@ -109,6 +109,5 @@ func (mc *Mixcloud) GetTracks(url string, submitter *gumble.User) ([]interfaces.
 	}
 
 	tracks = append(tracks, track)
-
 	return tracks, nil
 }
