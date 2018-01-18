@@ -1,10 +1,10 @@
-package: github.com/matthieugrieger/mumbledj
-homepage: https://github.com/matthieugrieger/mumbledj
+package: git.roshless.me/roshless/mumbledj
+homepage: https://git.roshless.me/roshless/mumbledj
 license: MIT
 owners:
-- name: Matthieu Grieger
-  email: me@matthieugrieger.com
-  homepage: https://matthieugrieger.com
+- name: Roshless
+  email: code@roshless.com
+  homepage: https://roshless.com
 import:
 - package: github.com/ChannelMeter/iso8601duration
 - package: github.com/Sirupsen/logrus

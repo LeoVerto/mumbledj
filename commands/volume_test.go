@@ -11,9 +11,9 @@ import (
 	"fmt"
 	"testing"
 
+	"git.roshless.me/roshless/mumbledj/bot"
 	"github.com/layeh/gumble/gumble"
 	"github.com/layeh/gumble/gumbleffmpeg"
-	"github.com/matthieugrieger/mumbledj/bot"
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/suite"
 )

@@ -14,10 +14,10 @@ import (
 	"strings"
 	"time"
 
+	"git.roshless.me/roshless/mumbledj/bot"
+	"git.roshless.me/roshless/mumbledj/interfaces"
 	"github.com/antonholmquist/jason"
 	"github.com/layeh/gumble/gumble"
-	"github.com/matthieugrieger/mumbledj/bot"
-	"github.com/matthieugrieger/mumbledj/interfaces"
 )
 
 // Mixcloud is a wrapper around the Mixcloud API.

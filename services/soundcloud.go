@@ -16,10 +16,10 @@ import (
 	"strings"
 	"time"
 
+	"git.roshless.me/roshless/mumbledj/bot"
+	"git.roshless.me/roshless/mumbledj/interfaces"
 	"github.com/antonholmquist/jason"
 	"github.com/layeh/gumble/gumble"
-	"github.com/matthieugrieger/mumbledj/bot"
-	"github.com/matthieugrieger/mumbledj/interfaces"
 	"github.com/spf13/viper"
 )
 

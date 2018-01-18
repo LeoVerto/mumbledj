@@ -12,10 +12,10 @@ import (
 	"os"
 	"strings"
 
+	"git.roshless.me/roshless/mumbledj/bot"
+	"git.roshless.me/roshless/mumbledj/commands"
+	"git.roshless.me/roshless/mumbledj/services"
 	"github.com/Sirupsen/logrus"
-	"github.com/matthieugrieger/mumbledj/bot"
-	"github.com/matthieugrieger/mumbledj/commands"
-	"github.com/matthieugrieger/mumbledj/services"
 	"github.com/spf13/viper"
 	"github.com/urfave/cli"
 )
