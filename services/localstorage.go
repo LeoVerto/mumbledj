@@ -1,41 +1,41 @@
+/*
+ * MumbleDJ
+ * By Matthieu Grieger
+ * services/localstorage.go
+ * Copyright (c) 2018 Roshless (MIT License)
+ */
+
 package services
 
 import (
 	"errors"
-	"fmt"
-	"math"
+	"io/ioutil"
 	"net/http"
-	"regexp"
+	"os"
+    "path/filepath" 
 	"strings"
 	"time"
 
+	"git.roshless.me/roshless/mumbledj/bot"
+	"git.roshless.me/roshless/mumbledj/interfaces"
 	"github.com/antonholmquist/jason"
 	"github.com/layeh/gumble/gumble"
-	// probably need to change that
-	"github.com/matthieugrieger/mumbledj/bot"
-	"github.com/matthieugrieger/mumbledj/interfaces"
 	"github.com/spf13/viper"
 )
 
-// LocalStorage is music player from local storage. (WOW)
+// LocalStorage is simple local file player.
 type LocalStorage struct {
 	*GenericService
 }
 
-// NewLocalStorageService might or might not be needed
+// NewLocalStorageService returns an initialized LocalStorage service object
 func NewLocalStorageService() *LocalStorage {
 	return &LocalStorage{
 		&GenericService{
-			ReadableName: "LocalStorage",
-			Format:       "opus", // ???
-			TrackRegex: []*regexp.Regexp{
-				//implement here checking file?
-				regexp.MustCompile(`https?:\/\/www.youtube.com\/watch\?v=(?P<id>[\w-]+)(?P<timestamp>\&t=\d*m?\d*s?)?`),
-				regexp.MustCompile(`https?:\/\/youtube.com\/watch\?v=(?P<id>[\w-]+)(?P<timestamp>\&t=\d*m?\d*s?)?`),
-				regexp.MustCompile(`https?:\/\/youtu.be\/(?P<id>[\w-]+)(?P<timestamp>\?t=\d*m?\d*s?)?`),
-				regexp.MustCompile(`https?:\/\/youtube.com\/v\/(?P<id>[\w-]+)(?P<timestamp>\?t=\d*m?\d*s?)?`),
-				regexp.MustCompile(`https?:\/\/www.youtube.com\/v\/(?P<id>[\w-]+)(?P<timestamp>\?t=\d*m?\d*s?)?`),
-			},
+			ReadableName:  "LocalStorage",
+			Format:        nil, 
+			TrackRegex:    []*regexp.Regexp{
+				regexp.MustCompile(`+\.ls`),
 			PlaylistRegex: nil,
 		},
 	}
@@ -45,168 +45,90 @@ func NewLocalStorageService() *LocalStorage {
 // provided in the configuration file to determine if the
 // service should be enabled.
 func (ls *LocalStorage) CheckAPIKey() error {
-	// No key needed.
+	// We check for
+	if viper.GetBool("localstorage.enabled") == false {
+		return errors.New("LocalStorage disabled")
+	}
 	return nil
 }
 
-// GetTracks uses the passed URL to find and return
-// tracks associated with the URL. An error is returned
-// if any error occurs during the API call.
-func (ls *LocalStorage) GetTracks(url string, submitter *gumble.User) ([]interfaces.Track, error) {
+// GetTracks uses the passed tag to find and return
+// tracks associated with the tag (file name without extension).
+// An error is returned if any error occurs during the API call.
+func (ls *LocalStorage) GetTracks(tag string, submitter *gumble.User) ([]interfaces.Track, error) {
 	var (
-		playlistURL      string
-		playlistItemsURL string
-		id               string
-		err              error
-		resp             *http.Response
-		v                *jason.Object
-		track            bot.Track
-		tracks           []interfaces.Track
+		id     			string
+		err    			error
+		directory 		string
+		filePath  		string
+		jsonPath  		string
+		v      			*jason.Object
+		track  			bot.Track
+		tracks 			[]interfaces.Track
 	)
 
+	fileExtension := ".track"
 	dummyOffset, _ := time.ParseDuration("0s")
-	urlSplit := strings.Split(url, "?t=")
+	tagSplit := strings.Split(tag, ".")
 
-	playlistURL = "https://www.googleapis.com/youtube/v3/playlists?part=snippet&id=%s&key=%s"
-	playlistItemsURL = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&playlistId=%s&maxResults=%d&key=%s&pageToken=%s"
-	id, err = yt.getID(urlSplit[0])
+	// getID needs to have some kind of magic <id> in regrex
+	/*
+	id, err = ls.getID(tagSplit[0])
 	if err != nil {
 		return nil, err
 	}
+	*/
+	id = tagSplit[0]
 
-	if yt.isPlaylist(url) {
-		resp, err = http.Get(fmt.Sprintf(playlistURL, id, viper.GetString("api_keys.youtube")))
-		defer resp.Body.Close()
-		if err != nil {
-			return nil, err
-		}
-
-		v, err = jason.NewObjectFromReader(resp.Body)
-		if err != nil {
-			return nil, err
-		}
-
-		items, _ := v.GetObjectArray("items")
-		item := items[0]
-
-		title, _ := item.GetString("snippet", "title")
-
-		playlist := &bot.Playlist{
-			ID:        id,
-			Title:     title,
-			Submitter: submitter.Name,
-			Service:   yt.ReadableName,
-		}
-
-		maxItems := math.MaxInt32
-		if viper.GetInt("queue.max_tracks_per_playlist") > 0 {
-			maxItems = viper.GetInt("queue.max_tracks_per_playlist")
-		}
-
-		// YouTube playlist searches return a max of 50 results per page
-		maxResults := 50
-		if maxResults > maxItems {
-			maxResults = maxItems
-		}
-
-		pageToken := ""
-		for len(tracks) < maxItems {
-			curResp, curErr := http.Get(fmt.Sprintf(playlistItemsURL, id, maxResults, viper.GetString("api_keys.youtube"), pageToken))
-			defer curResp.Body.Close()
-			if curErr != nil {
-				// An error occurred, simply skip this track.
-				continue
-			}
-
-			v, err = jason.NewObjectFromReader(curResp.Body)
-			if err != nil {
-				// An error occurred, simply skip this track.
-				continue
-			}
-
-			curTracks, _ := v.GetObjectArray("items")
-			for _, track := range curTracks {
-				videoID, _ := track.GetString("snippet", "resourceId", "videoId")
-
-				// Unfortunately we have to execute another API call for each video as the YouTube API does not
-				// return video durations from the playlistItems endpoint...
-				newTrack, _ := yt.getTrack(videoID, submitter, dummyOffset)
-				newTrack.Playlist = playlist
-				tracks = append(tracks, newTrack)
-
-				if len(tracks) >= maxItems {
-					break
-				}
-			}
-
-			pageToken, _ = v.GetString("nextPageToken")
-			if pageToken == "" {
-				break
-			}
-		}
-
-		if len(tracks) == 0 {
-			return nil, errors.New("Invalid playlist. No tracks were added")
-		}
-		return tracks, nil
-	}
-
-	// Submitter added a track!
 	offset := dummyOffset
-	if len(urlSplit) == 2 {
-		offset, _ = time.ParseDuration(urlSplit[1])
+	/*
+	// I don't plan to use offset feature but I'll leave it in for now.
+	if len(tagSplit) == 2 {
+		// If ?t=XmXs add that time to offset
+		offset, _ = time.ParseDuration(tagSplit[1])
+	}
+	*/
+
+	directory = viper.GetString("localstorage.directory") + os.PathSeparator
+	filePath = directory + id + fileExtension
+	if _, err := os.Stat(filePath); os.IsNotExist(err) {
+		return bot.Track{}, err
 	}
 
-	track, err = yt.getTrack(id, submitter, offset)
-	if err != nil {
-		return nil, err
-	}
-	tracks = append(tracks, track)
-	return tracks, nil
-}
-
-func (yt *YouTube) getTrack(id string, submitter *gumble.User, offset time.Duration) (bot.Track, error) {
-	var (
-		resp *http.Response
-		err  error
-		v    *jason.Object
-	)
-
-	// do a check for file here probably, not in regrex at top
-	videoURL := "https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails&id=%s&key=%s"
-	resp, err = http.Get(fmt.Sprintf(videoURL, id, viper.GetString("api_keys.youtube")))
-	defer resp.Body.Close()
+	jsonPath = directory + id + ".json"
+	jsonFile, err := ioutil.ReadFile(jsonPath)
 	if err != nil {
 		return bot.Track{}, err
 	}
 
-	v, err = jason.NewObjectFromReader(resp.Body)
+	v, err = jason.NewObjectFromBytes(jsonFile)
 	if err != nil {
 		return bot.Track{}, err
 	}
-	items, _ := v.GetObjectArray("items")
-	if len(items) == 0 {
-		return bot.Track{}, errors.New("This YouTube video is private")
-	}
-	item := items[0]
-	title, _ := item.GetString("snippet", "title")
-	thumbnail, _ := item.GetString("snippet", "thumbnails", "high", "url")
-	author, _ := item.GetString("snippet", "channelTitle")
-	durationString, _ := item.GetString("contentDetails", "duration")
+
+	// If we got this far I assume json file
+	// has all needed stuff.
+	title, _ := v.GetString("title")
+	thumbnail, _ := v.GetString("thumbnail")
+	artist, _ := v.GetString("artist")
+	durationString, _ := v.GetString("duration")
 	durationConverted, _ := duration.FromString(durationString)
 	duration := durationConverted.ToDuration()
 
-	return bot.Track{
+	track := bot.Track{
 		ID:             id,
-		URL:            "https://youtube.com/watch?v=" + id,
+		URL:            "localstorage/" + id,
 		Title:          title,
-		Author:         author,
+		Author:         artist,
 		Submitter:      submitter.Name,
-		Service:        yt.ReadableName,
-		Filename:       id + ".track",
-		ThumbnailURL:   thumbnail,
+		Service:        ls.ReadableName,
+		Filename:       id + fileExtension,
+		Thumbnailtag:   thumbnail,
 		Duration:       duration,
 		PlaybackOffset: offset,
 		Playlist:       nil,
 	}, nil
+
+	tracks = append(tracks, track)
+	return tracks, nil
 }
