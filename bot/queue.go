@@ -275,6 +275,10 @@ func (q *Queue) PlayCurrent() error {
 			return err
 		}
 	}
+	// Local Storage check
+	if currentTrack.GetService() == "LocalStorage" {
+		filepath = os.ExpandEnv(viper.GetString("localstorage.directory") + "/" + currentTrack.GetFilename())
+	}
 	source := gumbleffmpeg.SourceFile(filepath)
 	DJ.AudioStream = gumbleffmpeg.New(DJ.Client, source)
 	DJ.AudioStream.Offset = currentTrack.GetPlaybackOffset()
