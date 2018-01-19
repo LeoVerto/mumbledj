@@ -81,8 +81,7 @@ func (c *PlayLsCommand) Execute(user *gumble.User, args ...string) (string, bool
 		}
 	}
 
-	// We dont use ShuffleTracks because it will not shuffle first element.
-	// TODO: make sure it doesn't work, it would be better to not do it here
+	// We dont use ShuffleTracks because it seeds once.
 	rand.Seed(time.Now().UnixNano())
 	for i := range allTracks {
 		j := rand.Intn(i + 1)

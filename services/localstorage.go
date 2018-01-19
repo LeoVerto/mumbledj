@@ -68,9 +68,9 @@ func (ls *LocalStorage) GetTracks(tag string, submitter *gumble.User) ([]interfa
 	)
 
 	fileExtension := ".track"
-	dummyOffset, _ := time.ParseDuration("0s")
 	tagSplit := strings.Split(tag, ".")
 
+	// TODO: nice feature
 	// getID needs to have some kind of magic <id> in regrex
 	/*
 		id, err = ls.getID(tagSplit[0])
@@ -79,15 +79,6 @@ func (ls *LocalStorage) GetTracks(tag string, submitter *gumble.User) ([]interfa
 		}
 	*/
 	id = tagSplit[0]
-
-	offset := dummyOffset
-	/*
-		// I don't plan to use offset feature but I'll leave it in for now.
-		if len(tagSplit) == 2 {
-			// If ?t=XmXs add that time to offset
-			offset, _ = time.ParseDuration(tagSplit[1])
-		}
-	*/
 
 	directory = viper.GetString("localstorage.directory")
 	if !strings.HasSuffix(directory, "/") {
@@ -119,6 +110,7 @@ func (ls *LocalStorage) GetTracks(tag string, submitter *gumble.User) ([]interfa
 	durationString, _ := v.GetString("duration")
 	durationConverted, _ := duration.FromString(durationString)
 	duration := durationConverted.ToDuration()
+	offset, _ := time.ParseDuration("0s")
 
 	track := bot.Track{
 		ID:             id,
