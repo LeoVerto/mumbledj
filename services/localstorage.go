@@ -35,7 +35,7 @@ func NewLocalStorageService() *LocalStorage {
 			ReadableName: "LocalStorage",
 			Format:       "",
 			TrackRegex: []*regexp.Regexp{
-				regexp.MustCompile(`+\.ls`),
+				regexp.MustCompile(`.+\.ls`),
 			},
 			PlaylistRegex: nil,
 		},
@@ -89,7 +89,11 @@ func (ls *LocalStorage) GetTracks(tag string, submitter *gumble.User) ([]interfa
 		}
 	*/
 
-	directory = viper.GetString("localstorage.directory") + "/"
+	directory = viper.GetString("localstorage.directory")
+	if !strings.HasSuffix(directory, "/") {
+		directory += "/"
+	}
+
 	filePath = directory + id + fileExtension
 	if _, err := os.Stat(filePath); os.IsNotExist(err) {
 		return nil, err
@@ -117,7 +121,7 @@ func (ls *LocalStorage) GetTracks(tag string, submitter *gumble.User) ([]interfa
 
 	track := bot.Track{
 		ID:             id,
-		URL:            "localstorage/" + id,
+		URL:            "",
 		Title:          title,
 		Author:         artist,
 		Submitter:      submitter.Name,
