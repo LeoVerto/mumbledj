@@ -18,11 +18,11 @@ import (
 	"strings"
 	"time"
 
+	"git.roshless.me/roshless/mumbledj/interfaces"
 	"github.com/Sirupsen/logrus"
 	"github.com/layeh/gumble/gumble"
 	"github.com/layeh/gumble/gumbleffmpeg"
 	"github.com/layeh/gumble/gumbleutil"
-	"github.com/matthieugrieger/mumbledj/interfaces"
 	"github.com/spf13/viper"
 )
 
