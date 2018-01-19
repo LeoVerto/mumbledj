@@ -112,6 +112,7 @@ func (ls *LocalStorage) GetTracks(tag string, submitter *gumble.User) ([]interfa
 
 	// If we got this far I assume json file
 	// has all needed stuff.
+	URL, _ := v.GetString("URL")
 	title, _ := v.GetString("title")
 	thumbnail, _ := v.GetString("thumbnail")
 	artist, _ := v.GetString("artist")
@@ -121,7 +122,7 @@ func (ls *LocalStorage) GetTracks(tag string, submitter *gumble.User) ([]interfa
 
 	track := bot.Track{
 		ID:             id,
-		URL:            "",
+		URL:            URL,
 		Title:          title,
 		Author:         artist,
 		Submitter:      submitter.Name,

@@ -270,15 +270,17 @@ func (q *Queue) SkipPlaylist() {
 func (q *Queue) PlayCurrent() error {
 	currentTrack := q.GetTrack(0)
 	filepath := os.ExpandEnv(viper.GetString("cache.directory") + "/" + currentTrack.GetFilename())
+	// Local Storage check
+	if currentTrack.GetService() == "LocalStorage" {
+		filepath = os.ExpandEnv(viper.GetString("localstorage.directory") + "/" + currentTrack.GetFilename())
+	}
+
 	if _, err := os.Stat(filepath); os.IsNotExist(err) {
 		if err := DJ.YouTubeDL.Download(q.GetTrack(0)); err != nil {
 			return err
 		}
 	}
-	// Local Storage check
-	if currentTrack.GetService() == "LocalStorage" {
-		filepath = os.ExpandEnv(viper.GetString("localstorage.directory") + "/" + currentTrack.GetFilename())
-	}
+
 	source := gumbleffmpeg.SourceFile(filepath)
 	DJ.AudioStream = gumbleffmpeg.New(DJ.Client, source)
 	DJ.AudioStream.Offset = currentTrack.GetPlaybackOffset()
