@@ -10,14 +10,14 @@ package services
 import (
 	"errors"
 	"io/ioutil"
-	"net/http"
 	"os"
-    "path/filepath" 
+	"regexp"
 	"strings"
 	"time"
 
 	"git.roshless.me/roshless/mumbledj/bot"
 	"git.roshless.me/roshless/mumbledj/interfaces"
+	"github.com/ChannelMeter/iso8601duration"
 	"github.com/antonholmquist/jason"
 	"github.com/layeh/gumble/gumble"
 	"github.com/spf13/viper"
@@ -32,10 +32,11 @@ type LocalStorage struct {
 func NewLocalStorageService() *LocalStorage {
 	return &LocalStorage{
 		&GenericService{
-			ReadableName:  "LocalStorage",
-			Format:        nil, 
-			TrackRegex:    []*regexp.Regexp{
+			ReadableName: "LocalStorage",
+			Format:       "",
+			TrackRegex: []*regexp.Regexp{
 				regexp.MustCompile(`+\.ls`),
+			},
 			PlaylistRegex: nil,
 		},
 	}
@@ -57,14 +58,13 @@ func (ls *LocalStorage) CheckAPIKey() error {
 // An error is returned if any error occurs during the API call.
 func (ls *LocalStorage) GetTracks(tag string, submitter *gumble.User) ([]interfaces.Track, error) {
 	var (
-		id     			string
-		err    			error
-		directory 		string
-		filePath  		string
-		jsonPath  		string
-		v      			*jason.Object
-		track  			bot.Track
-		tracks 			[]interfaces.Track
+		id        string
+		err       error
+		directory string
+		filePath  string
+		jsonPath  string
+		v         *jason.Object
+		tracks    []interfaces.Track
 	)
 
 	fileExtension := ".track"
@@ -73,37 +73,37 @@ func (ls *LocalStorage) GetTracks(tag string, submitter *gumble.User) ([]interfa
 
 	// getID needs to have some kind of magic <id> in regrex
 	/*
-	id, err = ls.getID(tagSplit[0])
-	if err != nil {
-		return nil, err
-	}
+		id, err = ls.getID(tagSplit[0])
+		if err != nil {
+			return nil, err
+		}
 	*/
 	id = tagSplit[0]
 
 	offset := dummyOffset
 	/*
-	// I don't plan to use offset feature but I'll leave it in for now.
-	if len(tagSplit) == 2 {
-		// If ?t=XmXs add that time to offset
-		offset, _ = time.ParseDuration(tagSplit[1])
-	}
+		// I don't plan to use offset feature but I'll leave it in for now.
+		if len(tagSplit) == 2 {
+			// If ?t=XmXs add that time to offset
+			offset, _ = time.ParseDuration(tagSplit[1])
+		}
 	*/
 
-	directory = viper.GetString("localstorage.directory") + os.PathSeparator
+	directory = viper.GetString("localstorage.directory") + "/"
 	filePath = directory + id + fileExtension
 	if _, err := os.Stat(filePath); os.IsNotExist(err) {
-		return bot.Track{}, err
+		return nil, err
 	}
 
 	jsonPath = directory + id + ".json"
 	jsonFile, err := ioutil.ReadFile(jsonPath)
 	if err != nil {
-		return bot.Track{}, err
+		return nil, err
 	}
 
 	v, err = jason.NewObjectFromBytes(jsonFile)
 	if err != nil {
-		return bot.Track{}, err
+		return nil, err
 	}
 
 	// If we got this far I assume json file
@@ -123,11 +123,11 @@ func (ls *LocalStorage) GetTracks(tag string, submitter *gumble.User) ([]interfa
 		Submitter:      submitter.Name,
 		Service:        ls.ReadableName,
 		Filename:       id + fileExtension,
-		Thumbnailtag:   thumbnail,
+		ThumbnailURL:   thumbnail,
 		Duration:       duration,
 		PlaybackOffset: offset,
 		Playlist:       nil,
-	}, nil
+	}
 
 	tracks = append(tracks, track)
 	return tracks, nil
