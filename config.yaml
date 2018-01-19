@@ -125,6 +125,15 @@ volume:
     highest: 0.8
 
 
+localstorage:
+
+    # Enable local storage service?
+    enabled: false
+
+    # Directory for files
+    directory: ""
+
+
 admins:
 
     # Enable admins?

@@ -61,6 +61,10 @@ func SetDefaultConfig() {
 	viper.SetDefault("volume.lowest", 0.01)
 	viper.SetDefault("volume.highest", 0.8)
 
+	// Local Storage settings.
+	viper.SetDefault("localstorage.enabled", false)
+	viper.SetDefault("localstorage.directory", "")
+
 	// Admins defaults.
 	viper.SetDefault("admins.enabled", true)
 	viper.SetDefault("admins.names", []string{"SuperUser"})
