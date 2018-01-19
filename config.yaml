@@ -179,6 +179,17 @@ commands:
             many_tracks_added: "<b>%s</b> added <b>%d</b> tracks to the queue."
             num_tracks_too_long: "<br><b>%d</b> tracks could not be added due to error or because they are too long."
 
+    addls:
+        aliases:
+            - "addls"
+        is_admin: true
+        description: "Adds a track from youtube to local storage."
+        messages:
+            syntax_error: "A youtube url and tag must be supplied with the addls command."
+            api_error: "Either video not found or wrong API key."
+            parsing_error: "Something went wrong with parsing json."
+            track_added: "You added <b>%s</b> tag (%s)"
+
     addnext:
         aliases:
             - "addnext"

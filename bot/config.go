@@ -84,6 +84,14 @@ func SetDefaultConfig() {
 	viper.SetDefault("commands.add.messages.many_tracks_added", "<b>%s</b> added <b>%d</b> tracks to the queue.")
 	viper.SetDefault("commands.add.messages.num_tracks_too_long", "<br><b>%d</b> tracks could not be added due to error or because they are too long.")
 
+	viper.SetDefault("commands.addls.aliases", []string{"addls"})
+	viper.SetDefault("commands.addls.is_admin", true)
+	viper.SetDefault("commands.addls.description", "Adds a track from youtube to local storage.")
+	viper.SetDefault("commands.addls.messages.syntax_error", "A URL and tag must be supplied with the addls command.")
+	viper.SetDefault("commands.addls.messages.api_error", "Either video not found or wrong API key.")
+	viper.SetDefault("commands.addls.messages.parsing_error", "Something went wrong with parsing json.")
+	viper.SetDefault("commands.addls.messages.track_added", "You added <b>%s</b> tag (%s)")
+
 	viper.SetDefault("commands.addnext.aliases", []string{"addnext", "an"})
 	viper.SetDefault("commands.addnext.is_admin", true)
 	viper.SetDefault("commands.addnext.description", "Adds a track or playlist from a media site as the next item in the queue.")
