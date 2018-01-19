@@ -58,6 +58,10 @@ func (c *AddLsCommand) Execute(user *gumble.User, args ...string) (string, bool,
 		cmd  *exec.Cmd
 	)
 
+	if viper.GetBool("localstorage.enabled") == false {
+		return "", true, errors.New(viper.GetString("common_messages.disabled_error"))
+	}
+
 	if len(args) != 2 {
 		return "", true, errors.New(viper.GetString("commands.addls.messages.syntax_error"))
 	}

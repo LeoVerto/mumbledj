@@ -133,6 +133,9 @@ localstorage:
     # Directory for files
     directory: ""
 
+    # Message to show when attempting to use disabled local storage commands.
+	common_messages.disabled_error: "Local storage service is disabled."
+
 
 admins:
 
@@ -325,6 +328,20 @@ commands:
         messages:
             no_audio_error: "Either the audio is already paused, or there are no tracks in the queue."
             paused: "<b>%s</b> has paused audio playback."
+
+    playls:
+        aliases:
+            - "playls"
+            - "play"
+            - "pls"
+        is_admin: false
+        description: "Adds every track from local storage to queue."
+        messages:
+            syntax_error: "Playls does not take any arguments."
+            directory_error: "Local storage directory does not exist."
+            directory_empty: "Local storage directory is empty."
+            many_tracks_added: "<b>%s</b> added <b>%d</b> tracks to the queue."
+            num_tracks_too_long: "<br><b>%d</b> tracks could not be added due to error or because they are too long."
 
     register:
         aliases:

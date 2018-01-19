@@ -64,6 +64,7 @@ func SetDefaultConfig() {
 	// Local Storage settings.
 	viper.SetDefault("localstorage.enabled", false)
 	viper.SetDefault("localstorage.directory", "")
+	viper.SetDefault("localstorage.common_messages.disabled_error", "Local storage service is disabled.")
 
 	// Admins defaults.
 	viper.SetDefault("admins.enabled", true)
@@ -168,6 +169,15 @@ func SetDefaultConfig() {
 	viper.SetDefault("commands.pause.description", "Pauses audio playback.")
 	viper.SetDefault("commands.pause.messages.no_audio_error", "Either the audio is already paused, or there are no tracks in the queue.")
 	viper.SetDefault("commands.pause.messages.paused", "<b>%s</b> has paused audio playback.")
+
+	viper.SetDefault("commands.playls.aliases", []string{"playls", "sh"})
+	viper.SetDefault("commands.playls.is_admin", false)
+	viper.SetDefault("commands.playls.description", "Adds every track from local storage to queue.")
+	viper.SetDefault("commands.playls.messages.syntax_error", "Playls does not take any arguments.")
+	viper.SetDefault("commands.playls.messages.directory_error", "Local storage directory does not exist.")
+	viper.SetDefault("commands.playls.messages.directory_empty", "Local storage directory is empty.")
+	viper.SetDefault("commands.playls.messages.many_tracks_added", "<b>%s</b> added <b>%d</b> tracks to the queue.")
+	viper.SetDefault("commands.playls.messages.num_tracks_too_long", "<br><b>%d</b> tracks could not be added due to error or because they are too long.")
 
 	viper.SetDefault("commands.register.aliases", []string{"register", "reg"})
 	viper.SetDefault("commands.register.is_admin", true)
