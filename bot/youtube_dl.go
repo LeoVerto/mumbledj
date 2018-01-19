@@ -46,7 +46,6 @@ func (yt *YouTubeDL) Download(t interfaces.Track) error {
 		if t.GetService() == "Mixcloud" {
 			cmd = exec.Command("youtube-dl", "--verbose", "--no-mtime", "--output", filepath, "--format", format, "--external-downloader", "aria2c", player, t.GetURL())
 		} else if t.GetService() == "LocalStorage" {
-			continue
 		} else {
 			cmd = exec.Command("youtube-dl", "--verbose", "--no-mtime", "--output", filepath, "--format", format, player, t.GetURL())
 		}
