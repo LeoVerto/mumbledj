@@ -134,7 +134,7 @@ localstorage:
     directory: ""
 
     # Message to show when attempting to use disabled local storage commands.
-	common_messages.disabled_error: "Local storage service is disabled."
+    common_messages.disabled_error: "Local storage service is disabled."
 
 
 admins:
