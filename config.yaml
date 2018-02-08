@@ -26,6 +26,13 @@ defaults:
     # Command to use to play audio files. The two supported choices are "ffmpeg" and "avconv".
     player_command: "ffmpeg"
 
+    # Should the submitter be able to skip tracks immediately? 
+    submitter_skippable: true
+
+    # Max length of a message. Workaround for "message too long" "feature" of mumble.
+    # https://github.com/mumble-voip/mumble/commit/3d082c8625d3fef2283c99f77b4776eb0dfc4358
+    message_max_length: 99999
+
 
 queue:
 
