@@ -128,18 +128,31 @@ func (dj *MumbleDJ) OnTextMessage(e *gumble.TextMessageEvent) {
 					}).Warnln("Sending an error message...")
 					dj.SendPrivateMessage(e.Sender, fmt.Sprintf("<b>Error:</b> %s", err.Error()))
 				} else {
+					var messagesCount int
+					messageMaxLength := viper.GetInt("defaults.message_max_length")
+					// Chopping message into parts because of this stupid idea
+					// https://github.com/mumble-voip/mumble/commit/3d082c8625d3fef2283c99f77b4776eb0dfc4358
+					for index := len(message); index >= 0; index = index - messageMaxLength {
+						messagesCount++
+					}
 					if isPrivateMessage {
 						logrus.WithFields(logrus.Fields{
 							"user":    e.Sender.Name,
 							"message": message,
 						}).Infoln("Sending a private message...")
-						dj.SendPrivateMessage(e.Sender, message)
+						for index := 0; index < messagesCount; index++ {
+							// TODO: do not just repeat message ;c
+							dj.SendPrivateMessage(e.Sender, message)
+						}
 					} else {
 						logrus.WithFields(logrus.Fields{
 							"channel": dj.Client.Self.Channel.Name,
 							"message": message,
 						}).Infoln("Sending a message to channel...")
-						dj.Client.Self.Channel.Send(message, false)
+						for index := 0; index < messagesCount; index++ {
+							// TODO: do not just repeat message ;c
+							dj.Client.Self.Channel.Send(message, false)
+						}
 					}
 				}
 			}()
