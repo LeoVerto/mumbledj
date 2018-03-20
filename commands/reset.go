@@ -53,6 +53,8 @@ func (c *ResetCommand) Execute(user *gumble.User, args ...string) (string, bool,
 		DJ.AudioStream = nil
 	}
 
+	// It crashes somewhere here if it plays localstorage files.
+
 	DJ.Queue.Reset()
 
 	if err := DJ.Cache.DeleteAll(); err != nil {

@@ -23,6 +23,7 @@ import (
 )
 
 // AddLsCommand is a command that adds an audio track to a local storage.
+// TODO: change name to AddLocalStorage
 type AddLsCommand struct{}
 
 // Aliases returns the current aliases for the command.
