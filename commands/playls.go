@@ -69,8 +69,8 @@ func (c *PlayLsCommand) Execute(user *gumble.User, args ...string) (string, bool
 		return "", true, errors.New(viper.GetString("commands.playls.messages.directory_error"))
 	}
 
-	for n, f := range files {
-		if n%2 == 1 {
+	for i, f := range files {
+		if i%2 == 1 {
 			tag = f.Name() + ".ls"
 			if service, err = DJ.GetService(tag); err == nil {
 				tracks, err = service.GetTracks(tag, user)
