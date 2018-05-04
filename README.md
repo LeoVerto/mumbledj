@@ -105,6 +105,8 @@ This will place a compiled `mumbledj` binary in the cloned directory if successf
 sudo make install
 ```
 
+I strongly advice against installing binaries outside of packages.
+
 ## Usage
 MumbleDJ is a compiled program that is executed via a terminal.
 
@@ -148,6 +150,8 @@ mumbledj --admins.names="SuperUser,Matt" --volume.default="0.5" --volume.lowest=
 Keep in mind that values that contain commas (such as `"SuperUser,Matt"`) will be interpreted as string slices, or arrays if you are not familiar with Go. If you want your value to be interpreted as a normal string, it is best to avoid commas for now.
 
 ## Commands
+
+### This list isn't updated yet. Documentation, heh, who cares about that.
 
 ### add
 * __Description__: Adds a track or playlist from a media site to the queue.

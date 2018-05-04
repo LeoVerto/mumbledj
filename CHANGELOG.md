@@ -1,6 +1,12 @@
 MumbleDJ Changelog
 ==================
 
+### May 4, 2018 -- `v3.3`
+* new service: local storage - downloads files from youtube and doesn't use cache
+* new command: addls - adds song from youtube to local storage.
+* new command: playls - plays all songs from local storage.
+* new command: listlocalstorage - shows a list of all local storage songs.
+
 ### November 5, 2016 -- `v3.2.1`
 * Fixed YouTube video offsets. Now YouTube URLs with `?t=<timestamp>` at the end will start the audio playback at the appropriate position.
 
