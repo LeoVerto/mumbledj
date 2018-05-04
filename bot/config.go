@@ -136,6 +136,12 @@ func SetDefaultConfig() {
 	viper.SetDefault("commands.kill.is_admin", true)
 	viper.SetDefault("commands.kill.description", "Stops the bot and cleans its cache directory.")
 
+	viper.SetDefault("commands.listlocalstorage.aliases", []string{"listlocalstoragetracks", "listlocalstorage", "listls", "lls"})
+	viper.SetDefault("commands.listlocalstorage.is_admin", false)
+	viper.SetDefault("commands.listlocalstorage.description", "Outputs a list of the tracks currently in local storage.")
+	viper.SetDefault("commands.listlocalstorage.messages.directory_error", "Localstorage directory not found.")
+	viper.SetDefault("commands.listlocalstorage.messages.no_songs_error", "No localstorage songs found.")
+
 	viper.SetDefault("commands.listtracks.aliases", []string{"listtracks", "listsongs", "list", "l"})
 	viper.SetDefault("commands.listtracks.is_admin", false)
 	viper.SetDefault("commands.listtracks.description", "Outputs a list of the tracks currently in the queue.")

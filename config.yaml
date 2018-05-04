@@ -273,6 +273,18 @@ commands:
         is_admin: true
         description: "Stops the bot and cleans its cache directory."
 
+    listlocalstorage:
+        aliases:
+            - "listlocalstoragetracks"
+            - "listlocalstorage"
+            - "listls"
+            - "lls"
+        is_admin: false
+        description: "Outputs a list of the tracks currently in local storage."
+        messages:
+            directory_error: "Localstorage directory not found."
+            no_songs_error: "No localstorage songs found."
+
     listtracks:
         aliases:
             - "listtracks"

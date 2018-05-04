@@ -30,6 +30,7 @@ func init() {
 		new(HelpCommand),
 		new(JoinMeCommand),
 		new(KillCommand),
+		new(ListLocalStorageCommand),
 		new(ListTracksCommand),
 		new(MoveCommand),
 		new(NextTrackCommand),
