@@ -132,8 +132,12 @@ func (dj *MumbleDJ) OnTextMessage(e *gumble.TextMessageEvent) {
 					// https://github.com/mumble-voip/mumble/commit/3d082c8625d3fef2283c99f77b4776eb0dfc4358
 					var (
 						messagesCount, lastIndex int
-						messages []string
+						messages                 []string
 					)
+					// TODO: whole idea is kinda stupid now, it will work with default really long message limit
+					// but it choppes messages without any care for formatting, and it might be too hard to take
+					// in consideration every command.
+					// ALTERNATIVE: Message chopping only for listtracks and listlocalstorage.
 					messageMaxLength := viper.GetInt("defaults.message_max_length")
 					for i := range message {
 						if i == 0 {
@@ -152,18 +156,16 @@ func (dj *MumbleDJ) OnTextMessage(e *gumble.TextMessageEvent) {
 							"user":    e.Sender.Name,
 							"message": message,
 						}).Infoln("Sending a private message...")
-						for index := 0; index < messagesCount; index++ {
-							// TODO: might not work
-							dj.SendPrivateMessage(e.Sender, message[index:index+1])
+						for _, message := range messages {
+							dj.SendPrivateMessage(e.Sender, message)
 						}
 					} else {
 						logrus.WithFields(logrus.Fields{
 							"channel": dj.Client.Self.Channel.Name,
 							"message": message,
 						}).Infoln("Sending a message to channel...")
-						for index := 0; index < messagesCount; index++ {
-							// TODO: might not work
-							dj.SendPrivateMessage(e.Sender, message[index:index+1])
+						for _, message := range messages {
+							dj.SendPrivateMessage(e.Sender, message)
 						}
 					}
 				}
