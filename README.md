@@ -71,23 +71,13 @@ A SoundCloud client ID must be present in your configuration file in order to us
 **3)** You should now see that a client ID has been generated. Copy/paste this ID (NOT the client secret) into the configuration file located at `$HOME/.config/mumbledj/mumbledj.yaml`.
 
 
-### Via `go get` (recommended)
+### Via `go get` (might not work)
 After verifying that the [requirements](#requirements) are installed, simply issue the following command:
 ```
-go get -u git.roshless.me/roshless/mumbledj
+go get -u git.roshless.me/Roshless/MumbleDJ
 ```
 
 This should place a binary in `$GOPATH/bin` that can be used to start the bot.
-
-**NOTE:** If using Go 1.5, you MUST execute the following for `go get` to work:
-```
-export GO15VENDOREXPERIMENT=1
-```
-
-### Pre-compiled Binaries (easiest)
-Pre-compiled binaries are provided for convenience. Overall, I do not recommend using these unless you cannot get `go install` to work properly. Binaries compiled on your own machine are likely more efficient as these binaries are cross-compiled from a 64-bit Linux system.
-
-After verifying that the [requirements](#requirements) are installed, simply visit the [releases page](https://git.roshless.me/roshless/mumbledj/releases) and download the appropriate binary for your platform.
 
 ### From Source
 First, clone the MumbleDJ repository to your machine:
@@ -105,13 +95,7 @@ This will place a compiled `mumbledj` binary in the cloned directory if successf
 sudo make install
 ```
 
-I strongly advice against installing binaries outside of packages.
-
 ## Usage
-MumbleDJ is a compiled program that is executed via a terminal.
-
-Here is an example helptext that gives you a feel for the various commandline arguments you can give MumbleDJ:
-
 ```
 NAME:
    MumbleDJ - A Mumble bot that plays audio from various media sites.
@@ -124,7 +108,7 @@ VERSION:
 
 COMMANDS:
 GLOBAL OPTIONS:
-   --config value, -c value		location of MumbleDJ configuration file (default: "/home/matthieu/.config/mumbledj/config.yaml")
+   --config value, -c value		location of MumbleDJ configuration file (default: "/home/$USER/.config/mumbledj/config.yaml")
    --server value, -s value		address of Mumble server to connect to (default: "127.0.0.1")
    --port value, -o value		port of Mumble server to connect to (default: "64738")
    --username value, -u value		username for the bot (default: "MumbleDJ")
@@ -151,186 +135,4 @@ Keep in mind that values that contain commas (such as `"SuperUser,Matt"`) will b
 
 ## Commands
 
-### This list isn't updated yet. Documentation, heh, who cares about that.
-
-### add
-* __Description__: Adds a track or playlist from a media site to the queue.
-* __Default Aliases__: add, a
-* __Arguments__: (Required) URL(s) to a track or playlist from a supported media site.
-* __Admin-only by default__: No
-* __Example__: `!add https://www.youtube.com/watch?v=KQY9zrjPBjo`
-
-### addnext
-* __Description__: Adds a track or playlist from a media site as the next item in the queue.
-* __Default Aliases__: addnext, an
-* __Arguments__: (Required) URL(s) to a track or playlist from a supported media site.
-* __Admin-only by default__: Yes
-* __Example__: `!addnext https://www.youtube.com/watch?v=KQY9zrjPBjo`
-
-### cachesize
-* __Description__: Outputs the file size of the cache in MiB if caching is enabled.
-* __Default Aliases__: cachesize, cs
-* __Arguments__: None
-* __Admin-only by default__: Yes
-* __Example__: `!cachesize`
-
-### currenttrack
-* __Description__: Outputs information about the current track in the queue if one exists.
-* __Default Aliases__: currenttrack, currentsong, current
-* __Arguments__: None
-* __Admin-only by default__: No
-* __Example__: `!currenttrack`
-
-### forceskip
-* __Description__: Immediately skips the current track.
-* __Default Aliases__: forceskip, fs
-* __Arguments__: None
-* __Admin-only by default__: Yes
-* __Example__: `!forceskip`
-
-### forceskipplaylist
-* __Description__: Immediately skips the current playlist.
-* __Default Aliases__: forceskipplaylist, fsp
-* __Arguments__: None
-* __Admin-only by default__: Yes
-* __Example__: `!forceskipplaylist`
-
-### help
-* __Description__: Outputs a list of available commands and their descriptions.
-* __Default Aliases__: help, h
-* __Arguments__: None
-* __Admin-only by default__: No
-* __Example__: `!help`
-
-### joinme
-* __Description__: Moves MumbleDJ into your current channel if not playing audio to someone else.
-* __Default Aliases__: joinme, join
-* __Arguments__: None
-* __Admin-only by default__: Yes
-* __Example__: `!joinme`
-
-### kill
-* __Description__: Stops the bot and cleans its cache directory.
-* __Default Aliases__: kill, k
-* __Arguments__: None
-* __Admin-only by default__: Yes
-* __Example__: `!kill`
-
-### listtracks
-* __Description__: Outputs a list of the tracks currently in the queue.
-* __Default Aliases__: listtracks, listsongs, list, l
-* __Arguments__: (Optional) Number of tracks to list
-* __Admin-only by default__: No
-* __Example__: `!listtracks 10`
-
-### move
-* __Description__: Moves the bot into the Mumble channel provided via argument.
-* __Default Aliases__: move, m
-* __Arguments__: (Required) Mumble channel to move the bot into
-* __Admin-only by default__: Yes
-* __Example__: `!move Music`
-
-### nexttrack
-* __Description__: Outputs information about the next track in the queue if one exists.
-* __Default Aliases__: nexttrack, nextsong, next
-* __Arguments__: None
-* __Admin-only by default__: No
-* __Example__: `!nexttrack`
-
-### numcached
-* __Description__: Outputs the number of tracks cached on disk if caching is enabled.
-* __Default Aliases__: numcached, nc
-* __Arguments__: None
-* __Admin-only by default__: Yes
-* __Example__: `!numcached`
-
-### numtracks
-* __Description__: Outputs the number of tracks currently in the queue.
-* __Default Aliases__: numtracks, numsongs, nt
-* __Arguments__: None
-* __Admin-only by default__: No
-* __Example__: `!numtracks`
-
-### pause
-* __Description__: Pauses audio playback.
-* __Default Aliases__: pause
-* __Arguments__: None
-* __Admin-only by default__: No
-* __Example__: `!pause`
-
-### register
-* __Description__: Registers the bot on the server.
-* __Default Aliases__: register, reg
-* __Arguments__: None
-* __Admin-only by default__: Yes
-* __Example__: `!register`
-
-### reload
-* __Description__: Reloads the configuration file.
-* __Default Aliases__: reload, r
-* __Arguments__: None
-* __Admin-only by default__: Yes
-* __Example__: `!reload`
-
-### reset
-* __Description__: Resets the queue by removing all queue items.
-* __Default Aliases__: reset, re
-* __Arguments__: None
-* __Admin-only by default__: Yes
-* __Example__: `!reset`
-
-### resume
-* __Description__: Resumes audio playback.
-* __Default Aliases__: resume
-* __Arguments__: None
-* __Admin-only by default__: No
-* __Example__: `!pause`
-
-### setcomment
-* __Description__: Sets the comment displayed next to MumbleDJ's username in Mumble. If the argument is left empty, the current comment is removed.
-* __Default Aliases__: setcomment, comment, sc
-* __Arguments__: (Optional) New comment
-* __Admin-only by default__: Yes
-* __Example__: `!setcomment Hello! I'm a bot. Beep boop.`
-
-### shuffle
-* __Description__: Randomizes the tracks currently in the queue.
-* __Default Aliases__: shuffle, shuf, sh
-* __Arguments__: None
-* __Admin-only by default__: Yes
-* __Example__: `!shuffle`
-
-### skip
-* __Description__: Places a vote to skip the current track.
-* __Default Aliases__: skip, s
-* __Arguments__: None
-* __Admin-only by default__: No
-* __Example__: `!skip`
-
-### skipplaylist
-* __Description__: Places a vote to skip the current playlist.
-* __Default Aliases__: skipplaylist, sp
-* __Arguments__: None
-* __Admin-only by default__: No
-* __Example__: `!skipplaylist`
-
-### toggleshuffle
-* __Description__: Toggles permanent track shuffling on/off.
-* __Default Aliases__: toggleshuffle, toggleshuf, togshuf, tsh
-* __Arguments__: None
-* __Admin-only by default__: Yes
-* __Example__: `!toggleshuffle`
-
-### version
-* __Description__: Outputs the current version of MumbleDJ.
-* __Default Aliases__: version, v
-* __Arguments__: None
-* __Admin-only by default__: No
-* __Example__: `!version`
-
-### volume
-* __Description__: Changes the volume if an argument is provided, outputs the current volume otherwise.
-* __Default Aliases__: volume, vol
-* __Arguments__: (Optional) New volume
-* __Admin-only by default__: No
-* __Example__: `!volume 0.5`
+You can check that in config.yaml
