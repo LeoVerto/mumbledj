@@ -14,16 +14,12 @@ Fork of [matthieugrieger's mumbledj](https://github.com/matthieugrieger/mumbledj
   * [Via `go get`](#via-go-get-recommended)
   * [Pre-compiled Binaries](#pre-compiled-binaries-easiest)
   * [From Source](#from-source)
-  * [Docker](#docker)
 * [Usage](#usage)
 * [Commands](#commands)
-* [Contributing](#contributing)
-* [Author](#author)
-* [License](#license)
-* [Thanks](#thanks)
 
 ## Features
 * Plays audio from many media websites, including YouTube, SoundCloud, and Mixcloud.
+* Can also download from YouTube and play audio locally (disabled by default).
 * Supports playlists and individual videos/tracks.
 * Displays metadata in the text chat whenever a new track starts playing.
 * Incredibly customizable. Nearly everything is able to be tweaked via configuration files (by default located at `$HOME/.config/mumbledj/config.yaml`).
@@ -44,7 +40,6 @@ Fork of [matthieugrieger's mumbledj](https://github.com/matthieugrieger/mumbledj
 **If installing via `go install` or from source, the following must be installed:**
 * [Go 1.5+](https://golang.org)
   * __NOTE__: Extra installation steps are required for a working Go installation. Once Go is installed, type `go help gopath` for more information.
-  * If the repositories for your distro contain a version of Go older than 1.5, try using [`gvm`](https://github.com/moovweb/gvm) to install Go 1.5 or newer.
 
 #### YouTube API Key
 A YouTube API key must be present in your configuration file in order to use the YouTube service within the bot. Below is a guide for retrieving an API key:
@@ -74,7 +69,7 @@ A SoundCloud client ID must be present in your configuration file in order to us
 ### Via `go get` (might not work)
 After verifying that the [requirements](#requirements) are installed, simply issue the following command:
 ```
-go get -u git.roshless.me/Roshless/MumbleDJ
+go get -u git.roshless.me/roshless/mumbledj
 ```
 
 This should place a binary in `$GOPATH/bin` that can be used to start the bot.
