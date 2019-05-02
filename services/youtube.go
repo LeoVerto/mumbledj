@@ -8,6 +8,7 @@
 package services
 
 import (
+	"bytes"
 	"errors"
 	"fmt"
 	"math"
@@ -18,10 +19,11 @@ import (
 
 	"git.roshless.me/roshless/mumbledj/bot"
 	"git.roshless.me/roshless/mumbledj/interfaces"
-	"github.com/ChannelMeter/iso8601duration"
+	duration "github.com/ChannelMeter/iso8601duration"
 	"github.com/antonholmquist/jason"
 	"github.com/layeh/gumble/gumble"
 	"github.com/spf13/viper"
+	"github.com/vincent-petithory/dataurl"
 )
 
 // YouTube is a wrapper around the YouTube Data API.
@@ -230,6 +232,22 @@ func (yt *YouTube) getTrack(id string, submitter *gumble.User, offset time.Durat
 	durationString, _ := item.GetString("contentDetails", "duration")
 	durationConverted, _ := duration.FromString(durationString)
 	duration := durationConverted.ToDuration()
+
+	// Mumble no longer displays links to images so we have to convert it into data uri
+	resp, err = http.Get(thumbnail)
+	if err != nil {
+		return bot.Track{}, errors.New("Couldn't get thumbnail image")
+	}
+	defer resp.Body.Close()
+
+	buf := bytes.NewBuffer(make([]byte, 0, resp.ContentLength))
+	_, err = buf.ReadFrom(resp.Body)
+	if err != nil {
+		return bot.Track{}, errors.New("Response into buffer conversion failed")
+	}
+	img := buf.Bytes()
+
+	thumbnail = dataurl.EncodeBytes(img)
 
 	return bot.Track{
 		ID:             id,
