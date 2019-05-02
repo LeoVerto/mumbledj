@@ -14,6 +14,7 @@ Fork of [matthieugrieger's mumbledj](https://github.com/matthieugrieger/mumbledj
     - [SoundCloud API Key](#soundcloud-api-key)
   - [Via `go get`](#via-go-get)
   - [From Source](#from-source)
+  - [Docker](#docker)
 - [Usage](#usage)
 
 ## Features
@@ -88,6 +89,31 @@ This will place a compiled `mumbledj` binary in the cloned directory if successf
 ```
 sudo make install
 ```
+
+### Docker
+
+
+First you need to clone the MumbleDJ repository to your machine:
+```
+git clone https://git.roshless.me/roshless/mumbledj
+```
+
+Assuming you have [Docker installed](https://www.docker.com/products/docker), you will have to build the image:
+```
+docker build -t mumbledj .
+```
+
+And then you can run it, passing the configuration through the command line:
+```
+docker run --rm --name=mumbledj mumbledj --server=SERVER --api_keys.youtube=YOUR_YOUTUBE_API_KEY --api_keys.soundcloud=YOUR_SOUNDCLOUD_API_KEY
+```
+
+In order to run the process as a daemon and restart it automatically on reboot you can use:
+```
+docker run -d --restart=unless-stopped --name=mumbledj mumbledj --server=SERVER --api_keys.youtube=YOUR_YOUTUBE_API_KEY --api_keys.soundcloud=YOUR_SOUNDCLOUD_API_KEY
+```
+
+Compose doesn't have any sens here. Just use docker run.
 
 ## Usage
 ```
