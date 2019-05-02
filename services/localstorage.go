@@ -17,7 +17,7 @@ import (
 
 	"git.roshless.me/roshless/mumbledj/bot"
 	"git.roshless.me/roshless/mumbledj/interfaces"
-	"github.com/ChannelMeter/iso8601duration"
+	duration "github.com/ChannelMeter/iso8601duration"
 	"github.com/antonholmquist/jason"
 	"github.com/layeh/gumble/gumble"
 	"github.com/spf13/viper"
@@ -101,16 +101,17 @@ func (ls *LocalStorage) GetTracks(tag string, submitter *gumble.User) ([]interfa
 		return nil, err
 	}
 
-	// If we got this far I assume json file
-	// has all needed stuff.
-	URL, _ := v.GetString("URL")
-	title, _ := v.GetString("title")
-	thumbnail, _ := v.GetString("thumbnail")
-	artist, _ := v.GetString("artist")
-	durationString, _ := v.GetString("duration")
-	durationConverted, _ := duration.FromString(durationString)
+	URL, err := v.GetString("URL")
+	title, err := v.GetString("title")
+	thumbnail, err := v.GetString("thumbnail") // convert to data uri
+	artist, err := v.GetString("artist")
+	durationString, err := v.GetString("duration")
+	durationConverted, err := duration.FromString(durationString)
 	duration := durationConverted.ToDuration()
-	offset, _ := time.ParseDuration("0s")
+	offset, err := time.ParseDuration("0s")
+	if err != nil {
+		return nil, err
+	}
 
 	track := bot.Track{
 		ID:             id,
