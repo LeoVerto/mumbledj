@@ -137,7 +137,7 @@ func (c *AddLsCommand) Execute(user *gumble.User, args ...string) (string, bool,
 	}
 	defer fo.Close()
 
-	// Mumble no longer accepts links to images so we have to convert it into data uri
+	// Mumble no longer displays links to images so we have to convert it into data uri
 	resp, err = http.Get(thumbnail)
 	if err != nil {
 		return "", true, errors.New("Couldn't get thumbnail image")

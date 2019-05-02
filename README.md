@@ -6,16 +6,15 @@ Fork of [matthieugrieger's mumbledj](https://github.com/matthieugrieger/mumbledj
 
 ## Table of Contents
 
-* [Features](#features)
-* [Installation](#installation)
-  * [Requirements](#requirements)
-    * [YouTube API Key](#youtube-api-key)
-    * [SoundCloud API Key](#soundcloud-api-key)
-  * [Via `go get`](#via-go-get-recommended)
-  * [Pre-compiled Binaries](#pre-compiled-binaries-easiest)
-  * [From Source](#from-source)
-* [Usage](#usage)
-* [Commands](#commands)
+- [Table of Contents](#table-of-contents)
+- [Features](#features)
+- [Installation](#installation)
+  - [Requirements](#requirements)
+    - [YouTube API Key](#youtube-api-key)
+    - [SoundCloud API Key](#soundcloud-api-key)
+  - [Via `go get`](#via-go-get)
+  - [From Source](#from-source)
+- [Usage](#usage)
 
 ## Features
 * Plays audio from many media websites, including YouTube, SoundCloud, and Mixcloud.
@@ -29,7 +28,7 @@ Fork of [matthieugrieger's mumbledj](https://github.com/matthieugrieger/mumbledj
 * Built-in play/pause/volume control.
 
 ## Installation
-**IMPORTANT NOTE:** MumbleDJ is only tested and developed for Linux systems. Support will not be given for non-Linux systems if problems are encountered.
+**IMPORTANT NOTE:** MumbleDJ is only tested and developed for Linux systems. 
 
 ### Requirements
 **All MumbleDJ installations must also have the following installed:**
@@ -66,7 +65,7 @@ A SoundCloud client ID must be present in your configuration file in order to us
 **3)** You should now see that a client ID has been generated. Copy/paste this ID (NOT the client secret) into the configuration file located at `$HOME/.config/mumbledj/mumbledj.yaml`.
 
 
-### Via `go get` (might not work)
+### Via `go get`
 After verifying that the [requirements](#requirements) are installed, simply issue the following command:
 ```
 go get -u git.roshless.me/roshless/mumbledj
@@ -127,7 +126,3 @@ mumbledj --admins.names="SuperUser,Matt" --volume.default="0.5" --volume.lowest=
 ```
 
 Keep in mind that values that contain commas (such as `"SuperUser,Matt"`) will be interpreted as string slices, or arrays if you are not familiar with Go. If you want your value to be interpreted as a normal string, it is best to avoid commas for now.
-
-## Commands
-
-You can check that in config.yaml
