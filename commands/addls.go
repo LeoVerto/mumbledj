@@ -8,6 +8,7 @@
 package commands
 
 import (
+	"bytes"
 	"errors"
 	"fmt"
 	"io"
@@ -20,6 +21,7 @@ import (
 	"github.com/antonholmquist/jason"
 	"github.com/layeh/gumble/gumble"
 	"github.com/spf13/viper"
+	"github.com/vincent-petithory/dataurl"
 )
 
 // AddLsCommand is a command that adds an audio track to a local storage.
@@ -134,6 +136,22 @@ func (c *AddLsCommand) Execute(user *gumble.User, args ...string) (string, bool,
 		return "", true, errors.New("json file creation failed")
 	}
 	defer fo.Close()
+
+	// Mumble no longer accepts links to images so we have to convert it into data uri
+	resp, err = http.Get(thumbnail)
+	if err != nil {
+		return "", true, errors.New("Couldn't get thumbnail image")
+	}
+	defer resp.Body.Close()
+
+	buf := bytes.NewBuffer(make([]byte, 0, resp.ContentLength))
+	_, err = buf.ReadFrom(resp.Body)
+	if err != nil {
+		return "", true, errors.New("Response into buffer conversion failed")
+	}
+	img := buf.Bytes()
+
+	thumbnail = dataurl.EncodeBytes(img)
 
 	_, err = io.Copy(fo, strings.NewReader(fmt.Sprintf(jsonInput, URL, title, thumbnail, author, duration)))
 	if err != nil {
