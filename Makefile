@@ -3,16 +3,11 @@ dirs = ./interfaces/... ./commands/... ./services/... ./bot/... .
 all: mumbledj
 
 mumbledj: ## Default action. Builds MumbleDJ.
-	@env GO15VENDOREXPERIMENT="1" go build .
+	go build .
 
 .PHONY: test
 test: ## Runs unit tests for MumbleDJ.
-	@env GO15VENDOREXPERIMENT="1" go test $(dirs)
-
-.PHONY: coverage
-coverage: ## Runs coverage tests for MumbleDJ.
-	@env GO15VENDOREXPERIMENT="1" overalls -project=git.roshless.me/roshless/mumbledj -covermode=atomic
-	@mv overalls.coverprofile coverage.txt
+	go test $(dirs)
 
 .PHONY: clean
 clean: ## Removes compiled MumbleDJ binaries.
