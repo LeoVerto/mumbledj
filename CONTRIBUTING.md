@@ -1,29 +1,32 @@
 Contributing to MumbleDJ
 ========================
 
-## Keep in mind this was a part of original project. If you wanna contribute drop me a mail at code at roshless dot com.
+## Keep in mind this was a part of original project. If you wanna contribute drop me a mail at code at roshless dot com. Or just send patch there.
 
 
 Contributions are always welcome to MumbleDJ. This document will give you some tips and guidelines to follow while implementing your contribution.
 
 ## Table of Contents
-* [Implementing a new command](#implementing-a-new-command)
-  * [Create files for your new command](#create-files-for-your-new-command)
-  * [Copy templates into your new files](#copy-templates-into-your-new-files)
-    * [Command implementation template (`command.go`)](#command-implementation-template-commandgo)
-    * [Command test suite template (`command_test.go`)](#command-test-suite-template-command_testgo)
-  * [Implement your new command](#implement-your-new-command)
-  * [Add command to `commands/pkg_init.go`](#add-command-to-commandspkg_initgo)
-  * [Add necessary configuration values to `config.yaml` and `config.go`](#add-necessary-configuration-values-to-configyaml-and-configgo)
-  * [Regenerate `bindata.go`](#regenerate-bindatago)
-  * [Document your new command](#document-your-new-command)
-* [Implementing support for a new service](#implementing-support-for-a-new-service)
-  * [Create file for your new service](#create-file-for-your-new-service)
-  * [Copy template into your new file](#copy-template-into-your-new-file)
-  * [Implement your new service](#implement-your-new-service)
-  * [Add service to `services/pkg_init.go`](#add-command-to-servicespkg_initgo)
-  * [Add API key configuration value to `config.yaml` and `config.go` if necessary](#add-api-key-configuration-value-to-configyaml-and-configgo-if-necessary)
-  * [Document your new service](#document-your-new-service)
+- [Contributing to MumbleDJ](#contributing-to-mumbledj)
+	- [Keep in mind this was a part of original project. If you wanna contribute drop me a mail at code at roshless dot com. Or just send patch there.](#keep-in-mind-this-was-a-part-of-original-project-if-you-wanna-contribute-drop-me-a-mail-at-code-at-roshless-dot-com-or-just-send-patch-there)
+	- [Table of Contents](#table-of-contents)
+	- [Implementing a new command](#implementing-a-new-command)
+		- [Create files for your new command](#create-files-for-your-new-command)
+		- [Copy templates into your new files](#copy-templates-into-your-new-files)
+			- [Command implementation template (`command.go`)](#command-implementation-template-commandgo)
+			- [Command test suite template (`command_test.go`)](#command-test-suite-template-commandtestgo)
+		- [Implement your new command](#implement-your-new-command)
+		- [Add command to `commands/pkg_init.go`](#add-command-to-commandspkginitgo)
+		- [Add necessary configuration values to `config.yaml` and `config.go`](#add-necessary-configuration-values-to-configyaml-and-configgo)
+		- [Regenerate `bindata.go`](#regenerate-bindatago)
+		- [Document your new command](#document-your-new-command)
+	- [Implementing support for a new service](#implementing-support-for-a-new-service)
+		- [Create file for your new service](#create-file-for-your-new-service)
+		- [Copy template into your new file](#copy-template-into-your-new-file)
+		- [Implement your new service](#implement-your-new-service)
+		- [Add service to `services/pkg_init.go`](#add-service-to-servicespkginitgo)
+		- [Add API key configuration value to `config.yaml` and `config.go` if necessary](#add-api-key-configuration-value-to-configyaml-and-configgo-if-necessary)
+		- [Document your new service](#document-your-new-service)
 
 ## Implementing a new command
 Commands are the portion of MumbleDJ that allows users to interact with the bot. Here is a step-by-step guide on how to implement a new command:
