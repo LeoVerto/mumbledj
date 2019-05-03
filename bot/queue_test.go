@@ -14,7 +14,7 @@ import (
 	"time"
 
 	"git.roshless.me/roshless/mumbledj/interfaces"
-	"github.com/layeh/gumble/gumbleffmpeg"
+	"layeh.com/gumble/gumbleffmpeg"
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/suite"
 )

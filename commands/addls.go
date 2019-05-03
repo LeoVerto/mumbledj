@@ -17,11 +17,11 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/Sirupsen/logrus"
 	"github.com/antonholmquist/jason"
-	"github.com/layeh/gumble/gumble"
+	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 	"github.com/vincent-petithory/dataurl"
+	"layeh.com/gumble/gumble"
 )
 
 // AddLsCommand is a command that adds an audio track to a local storage.

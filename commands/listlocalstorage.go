@@ -13,7 +13,7 @@ import (
 	"io/ioutil"
 
 	"git.roshless.me/roshless/mumbledj/interfaces"
-	"github.com/layeh/gumble/gumble"
+	"layeh.com/gumble/gumble"
 	"github.com/spf13/viper"
 )
 

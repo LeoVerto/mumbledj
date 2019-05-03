@@ -52,7 +52,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/layeh/gumble/gumble"
+	"layeh.com/gumble/gumble"
 	"github.com/matthieugrieger/mumbledj/interfaces"
 	"github.com/spf13/viper"
 )
@@ -104,7 +104,7 @@ package commands
 import (
 	"testing"
 
-	"github.com/layeh/gumble/gumbleffmpeg"
+	"layeh.com/gumble/gumbleffmpeg"
 	"github.com/matthieugrieger/mumbledj/bot"
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/suite"
@@ -204,7 +204,7 @@ import (
 	"time"
 
 	"github.com/antonholmquist/jason"
-	"github.com/layeh/gumble/gumble"
+	"layeh.com/gumble/gumble"
 	"github.com/matthieugrieger/mumbledj/bot"
 	"github.com/matthieugrieger/mumbledj/interfaces"
 )

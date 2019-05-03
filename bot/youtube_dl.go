@@ -13,7 +13,7 @@ import (
 	"os/exec"
 
 	"git.roshless.me/roshless/mumbledj/interfaces"
-	"github.com/Sirupsen/logrus"
+	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 )
 

@@ -17,7 +17,7 @@ import (
 	"git.roshless.me/roshless/mumbledj/bot"
 	"git.roshless.me/roshless/mumbledj/interfaces"
 	"github.com/antonholmquist/jason"
-	"github.com/layeh/gumble/gumble"
+	"layeh.com/gumble/gumble"
 )
 
 // Mixcloud is a wrapper around the Mixcloud API.

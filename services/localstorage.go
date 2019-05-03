@@ -19,7 +19,7 @@ import (
 	"git.roshless.me/roshless/mumbledj/interfaces"
 	duration "github.com/ChannelMeter/iso8601duration"
 	"github.com/antonholmquist/jason"
-	"github.com/layeh/gumble/gumble"
+	"layeh.com/gumble/gumble"
 	"github.com/spf13/viper"
 )
 

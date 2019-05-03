@@ -15,7 +15,7 @@ import (
 	"git.roshless.me/roshless/mumbledj/bot"
 	"git.roshless.me/roshless/mumbledj/commands"
 	"git.roshless.me/roshless/mumbledj/services"
-	"github.com/Sirupsen/logrus"
+	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 	"github.com/urfave/cli"
 )
