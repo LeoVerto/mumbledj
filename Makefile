@@ -24,7 +24,7 @@ dist: ## Performs cross-platform builds via gox for multiple Linux platforms.
 
 .PHONY: bindata
 bindata: ## Regenerates bindata.go with an updated configuration file.
-	@go get -u github.com/jteeuwen/go-bindata/...
+	@GO111MODULE=off go get -u github.com/go-bindata/go-bindata/...
 	@go-bindata config.yaml
 
 .PHONY: help
