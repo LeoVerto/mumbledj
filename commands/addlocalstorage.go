@@ -24,23 +24,22 @@ import (
 	"layeh.com/gumble/gumble"
 )
 
-// AddLsCommand is a command that adds an audio track to a local storage.
-// TODO: change name to AddLocalStorage
-type AddLsCommand struct{}
+// AddLocalStorage is a command that adds an audio track to a local storage.
+type AddLocalStorage struct{}
 
 // Aliases returns the current aliases for the command.
-func (c *AddLsCommand) Aliases() []string {
+func (c *AddLocalStorage) Aliases() []string {
 	return viper.GetStringSlice("commands.addls.aliases")
 }
 
 // Description returns the description for the command.
-func (c *AddLsCommand) Description() string {
+func (c *AddLocalStorage) Description() string {
 	return viper.GetString("commands.addls.description")
 }
 
 // IsAdminCommand returns true if the command is only for admin use, and
 // returns false otherwise.
-func (c *AddLsCommand) IsAdminCommand() bool {
+func (c *AddLocalStorage) IsAdminCommand() bool {
 	return viper.GetBool("commands.addls.is_admin")
 }
 
@@ -53,7 +52,7 @@ func (c *AddLsCommand) IsAdminCommand() bool {
 //            If no error has occurred, pass nil instead.
 // Example return statement:
 //    return "This is a private message!", true, nil
-func (c *AddLsCommand) Execute(user *gumble.User, args ...string) (string, bool, error) {
+func (c *AddLocalStorage) Execute(user *gumble.User, args ...string) (string, bool, error) {
 	var (
 		resp *http.Response
 		err  error
