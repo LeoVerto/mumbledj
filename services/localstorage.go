@@ -19,8 +19,8 @@ import (
 	"git.roshless.me/roshless/mumbledj/interfaces"
 	duration "github.com/ChannelMeter/iso8601duration"
 	"github.com/antonholmquist/jason"
-	"layeh.com/gumble/gumble"
 	"github.com/spf13/viper"
+	"layeh.com/gumble/gumble"
 )
 
 // LocalStorage is simple local file player.
@@ -69,15 +69,6 @@ func (ls *LocalStorage) GetTracks(tag string, submitter *gumble.User) ([]interfa
 
 	fileExtension := ".track"
 	tagSplit := strings.Split(tag, ".")
-
-	// TODO: nice feature
-	// getID needs to have some kind of magic <id> in regrex
-	/*
-		id, err = ls.getID(tagSplit[0])
-		if err != nil {
-			return nil, err
-		}
-	*/
 	id = tagSplit[0]
 
 	directory = viper.GetString("localstorage.directory")
