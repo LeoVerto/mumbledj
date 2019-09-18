@@ -16,9 +16,9 @@ import (
 	"time"
 
 	"git.roshless.me/roshless/mumbledj/interfaces"
-	"layeh.com/gumble/gumbleffmpeg"
-	_ "layeh.com/gumble/opus"
 	"github.com/spf13/viper"
+	"layeh.com/gumble/gumbleffmpeg"
+	_ "layeh.com/gumble/opus" // fuck off
 )
 
 // Queue holds the audio queue itself along with useful methods for
@@ -199,7 +199,7 @@ func (q *Queue) Skip() {
 
 	q.mutex.Lock()
 	// If caching is disabled, delete the track from disk.
-	if len(q.Queue) != 0 && !viper.GetBool("cache.enabled") {
+	if len(q.Queue) != 0 && !viper.GetBool("cache.enabled") && q.GetTrack(0).GetService() != "LocalStorage" {
 		DJ.YouTubeDL.Delete(q.Queue[0])
 	}
 
@@ -210,23 +210,25 @@ func (q *Queue) Skip() {
 		q.mutex.Lock()
 	}
 
-	// Remove all playlist skips if this is the last track of the playlist still in the queue.
-	if playlist := q.Queue[0].GetPlaylist(); playlist != nil {
-		id := playlist.GetID()
-		playlistIsFinished := true
+	if len(q.Queue) != 0 {
+		// Remove all playlist skips if this is the last track of the playlist still in the queue.
+		if playlist := q.Queue[0].GetPlaylist(); playlist != nil {
+			id := playlist.GetID()
+			playlistIsFinished := true
 
-		q.mutex.Unlock()
-		q.Traverse(func(i int, t interfaces.Track) {
-			if i != 0 && t.GetPlaylist() != nil {
-				if t.GetPlaylist().GetID() == id {
-					playlistIsFinished = false
+			q.mutex.Unlock()
+			q.Traverse(func(i int, t interfaces.Track) {
+				if i != 0 && t.GetPlaylist() != nil {
+					if t.GetPlaylist().GetID() == id {
+						playlistIsFinished = false
+					}
 				}
-			}
-		})
-		q.mutex.Lock()
+			})
+			q.mutex.Lock()
 
-		if playlistIsFinished {
-			DJ.Skips.ResetPlaylistSkips()
+			if playlistIsFinished {
+				DJ.Skips.ResetPlaylistSkips()
+			}
 		}
 	}
 
