@@ -15,26 +15,26 @@ import (
 	"time"
 
 	"git.roshless.me/roshless/mumbledj/interfaces"
-	"layeh.com/gumble/gumble"
 	"github.com/spf13/viper"
+	"layeh.com/gumble/gumble"
 )
 
-// PlayLsCommand is a command that adds to queue every local storage song.
-type PlayLsCommand struct{}
+// PlayAllLocalStorage is a command that adds to queue every local storage song.
+type PlayAllLocalStorage struct{}
 
 // Aliases returns the current aliases for the command.
-func (c *PlayLsCommand) Aliases() []string {
+func (c *PlayAllLocalStorage) Aliases() []string {
 	return viper.GetStringSlice("commands.playls.aliases")
 }
 
 // Description returns the description for the command.
-func (c *PlayLsCommand) Description() string {
+func (c *PlayAllLocalStorage) Description() string {
 	return viper.GetString("commands.playls.description")
 }
 
 // IsAdminCommand returns true if the command is only for admin use, and
 // returns false otherwise.
-func (c *PlayLsCommand) IsAdminCommand() bool {
+func (c *PlayAllLocalStorage) IsAdminCommand() bool {
 	return viper.GetBool("commands.playls.is_admin")
 }
 
@@ -47,7 +47,7 @@ func (c *PlayLsCommand) IsAdminCommand() bool {
 //            If no error has occurred, pass nil instead.
 // Example return statement:
 //    return "This is a private message!", true, nil
-func (c *PlayLsCommand) Execute(user *gumble.User, args ...string) (string, bool, error) {
+func (c *PlayAllLocalStorage) Execute(user *gumble.User, args ...string) (string, bool, error) {
 	var (
 		tag       string
 		allTracks []interfaces.Track
