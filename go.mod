@@ -5,8 +5,7 @@ go 1.12
 require (
 	github.com/antonholmquist/jason v1.0.0
 	github.com/channelmeter/iso8601duration v0.0.0-20150204201828-8da3af7a2a61
-	github.com/gobuffalo/packr/v2 v2.8.0
-	github.com/layeh/gumble v0.0.0-20180508205105-1ea1159c4956
+	github.com/gobuffalo/packr/v2 v2.8.1
 	github.com/magiconair/properties v1.8.1 // indirect
 	github.com/pelletier/go-toml v1.4.0 // indirect
 	github.com/sirupsen/logrus v1.4.2
