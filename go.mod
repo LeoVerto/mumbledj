@@ -9,8 +9,6 @@ require (
 	github.com/gobuffalo/packr/v2 v2.8.1
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/karrick/godirwalk v1.16.1 // indirect
-	github.com/konsorten/go-windows-terminal-sequences v1.0.3 // indirect
-	github.com/layeh/gumble v0.0.0-20180508205105-1ea1159c4956
 	github.com/magiconair/properties v1.8.5 // indirect
 	github.com/mitchellh/mapstructure v1.4.1 // indirect
 	github.com/pelletier/go-toml v1.9.0 // indirect
@@ -21,7 +19,7 @@ require (
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/spf13/viper v1.7.1
-	github.com/stretchr/testify v1.5.1
+	github.com/stretchr/testify v1.7.0
 	github.com/urfave/cli/v2 v2.3.0
 	golang.org/x/crypto v0.0.0-20210421170649-83a5a9bb288b // indirect
 	golang.org/x/sys v0.0.0-20210426230700-d19ff857e887 // indirect
@@ -29,6 +27,5 @@ require (
 	golang.org/x/text v0.3.6 // indirect
 	gopkg.in/ini.v1 v1.62.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
-	layeh.com/gopus v0.0.0-20161224163843-0ebf989153aa // indirect
 	layeh.com/gumble v0.0.0-20200818122324-146f9205029b
 )
