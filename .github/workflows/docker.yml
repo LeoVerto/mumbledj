@@ -18,7 +18,7 @@ jobs:
       - name: Docker meta (master)
         if: ${{ github.ref_type == 'tag' || github.ref == 'refs/heads/master' }} 
         id: docker_meta_master
-        uses: docker/metadata-action@v3
+        uses: docker/metadata-action@v4
         with:
           images: ${{ secrets.DOCKERHUB_USERNAME }}/mumbledj,ghcr.io/${{ github.repository_owner }}/mumbledj
           tags: |
@@ -30,7 +30,7 @@ jobs:
       - name: Docker meta
         if: ${{ github.ref_type == 'branch' && github.ref != 'refs/heads/master' }} 
         id: docker_meta
-        uses: docker/metadata-action@v3
+        uses: docker/metadata-action@v4
         with:
           images: ${{ secrets.DOCKERHUB_USERNAME }}/mumbledj,ghcr.io/${{ github.repository_owner }}/mumbledj
           tags: |
