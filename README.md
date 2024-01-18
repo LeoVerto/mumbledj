@@ -1,3 +1,6 @@
+# BROKEN & UNMAINTAINED
+For an active fork, check out https://git.roshless.me/roshless/mumbledj
+
 
 <h1 align="center">MumbleDJ</h1>
 <p align="center"><b>A Mumble bot that plays audio fetched from various media websites.</b></p>
