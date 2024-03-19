@@ -1,5 +1,5 @@
 # Build environment for mumbledj - golang alpine container
-FROM    golang:1.22.1-alpine AS builder
+FROM    golang:1.22.1-alpine@sha256:0466223b8544fb7d4ff04748acc4d75a608234bf4e79563bff208d2060c0dd79 AS builder
 
 # renovate: datasource=repology depName=alpine_3_19/opus-dev versioning=loose
 ARG     OPUS_VERSION="1.4-r0"
@@ -23,7 +23,7 @@ RUN     make && make install
 
 
 # Export binary only from builder environment
-FROM    alpine:3.19.1
+FROM    alpine:3.19.1@sha256:c5b1261d6d3e43071626931fc004f70149baeba2c8ec672bd4f27761f8e1ad6b
 
 # renovate: datasource=repology depName=alpine_3_19/ffmpeg versioning=loose
 ARG     FFMPEG_VERSION="6.1.1-r0"
