@@ -3,7 +3,6 @@
   "extends": [
     "config:best-practices",
     ":semanticCommits",
-    ":semanticCommitScopeDisabled",
     "docker:enableMajor"
   ],
   "prHourlyLimit": 0,
