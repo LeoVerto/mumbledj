@@ -43,7 +43,7 @@ install: ## Copies MumbleDJ binary to /usr/local/bin for easy execution.
 
 .PHONY: assets
 assets: ## Regenerates assets which will be bundled with binary
-	@go get github.com/gobuffalo/packr/v2/packr2
+	@go install github.com/gobuffalo/packr/v2/packr2
 	@packr2
 
 .PHONY: help
