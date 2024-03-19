@@ -7,6 +7,7 @@
     "docker:enableMajor"
   ],
   "prHourlyLimit": 0,
+  "forkProcessing": "enabled",
   "customManagers": [
     {
       "customType": "regex",
