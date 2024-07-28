@@ -32,7 +32,7 @@ ARG     OPENSSL_VERSION="3.3.1-r3"
 # renovate: datasource=repology depName=alpine_3_20/aria2 versioning=loose
 ARG     ARIA2_VERSION="1.37.0-r0"
 # renovate: datasource=repology depName=alpine_3_20/yt-dlp versioning=loose
-ARG     YT_DLP_VERSION="2024.07.16-r0"
+ARG     YT_DLP_VERSION="2024.07.25-r0"
 
 RUN     apk add --no-cache \
           ffmpeg=${FFMPEG_VERSION} \
