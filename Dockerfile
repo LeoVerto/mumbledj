@@ -28,7 +28,7 @@ FROM    alpine:3.20.3@sha256:beefdbd8a1da6d2915566fde36db9db0b524eb737fc57cd1367
 # renovate: datasource=repology depName=alpine_3_20/ffmpeg versioning=loose
 ARG     FFMPEG_VERSION="6.1.1-r8"
 # renovate: datasource=repology depName=alpine_3_20/openssl versioning=loose
-ARG     OPENSSL_VERSION="3.3.2-r0"
+ARG     OPENSSL_VERSION="3.3.2-r1"
 # renovate: datasource=repology depName=alpine_3_20/aria2 versioning=loose
 ARG     ARIA2_VERSION="1.37.0-r0"
 # renovate: datasource=repology depName=alpine_3_20/yt-dlp versioning=loose
