@@ -2,7 +2,7 @@ module go.reik.pl/mumbledj
 
 go 1.22
 
-toolchain go1.24.1
+toolchain go1.24.2
 
 require (
 	github.com/antonholmquist/jason v1.0.0
