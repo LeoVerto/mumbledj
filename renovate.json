@@ -10,7 +10,9 @@
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": ["(^|/)Dockerfile$"],
+      "managerFilePatterns": [
+        "/(^|/)Dockerfile$/"
+      ],
       "matchStrings": [
         "\\s*#\\s*renovate:\\s*datasource=(?<datasource>.*?)\\s*depName=(?<depName>.*?)(\\s*versioning=(?<versioning>.*?))?\\s(ENV|ARG)\\s.*?_VERSION=\"?(?<currentValue>.*?)\"?\\s"
       ],
@@ -19,7 +21,9 @@
   ],
   "packageRules": [
     {
-      "matchDatasources": ["repology"],
+      "matchDatasources": [
+        "repology"
+      ],
       "groupName": "OS Packages"
     }
   ]
