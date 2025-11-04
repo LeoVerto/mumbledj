@@ -23,6 +23,7 @@ type CurrentTrackCommandTestSuite struct {
 
 func (suite *CurrentTrackCommandTestSuite) SetupSuite() {
 	DJ = bot.NewMumbleDJ()
+	bot.DJ = DJ
 
 	// Trick the tests into thinking audio is already playing to avoid
 	// attempting to play tracks that don't exist.

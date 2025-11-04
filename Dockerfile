@@ -1,8 +1,6 @@
 # Build environment for mumbledj - golang alpine container
-FROM golang:1.16-alpine AS builder
+FROM golang:1.24-alpine AS builder
 ARG branch=master
-
-ENV GO111MODULE=on
 
 RUN apk add --no-cache ca-certificates make git build-base opus-dev
 COPY . $GOPATH/src/go.reik.pl/mumbledj
