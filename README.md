@@ -1,9 +1,9 @@
-# BROKEN & UNMAINTAINED
-For an active fork, check out https://git.roshless.me/roshless/mumbledj
-
-
 <h1 align="center">MumbleDJ</h1>
 <p align="center"><b>A Mumble bot that plays audio fetched from various media websites.</b></p>
+
+Apparently the only non-dead fork left on GitHub so I'm forced to maintain this :D
+
+For another fork with a slightly different feature-set, check out [roshless' one](https://git.roshless.me/roshless/mumbledj).
 
 ## Table of Contents
 
