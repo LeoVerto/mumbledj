@@ -68,6 +68,7 @@ func NewYouTubeService() *YouTube {
 				regexp.MustCompile(`https?:\/\/youtu\.be\/(?P<id>[\w-]+)(\?t=(?P<timestamp>\d*m?\d*s?))?`),
 				regexp.MustCompile(`https?:\/\/youtube\.com\/v\/(?P<id>[\w-]+)(?P<timestamp>\?t=\d*m?\d*s?)?`),
 				regexp.MustCompile(`https?:\/\/www\.youtube\.com\/v\/(?P<id>[\w-]+)(?P<timestamp>\?t=\d*m?\d*s?)?`),
+				regexp.MustCompile(`https?:\/\/www\.youtube\.com\/shorts\/(?P<id>[\w-]+)`),
 			},
 			PlaylistRegex: []*regexp.Regexp{
 				regexp.MustCompile(`https?:\/\/www\.youtube\.com\/playlist\?list=(?P<id>[\w-]+)`),
