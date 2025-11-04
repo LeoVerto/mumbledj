@@ -45,17 +45,6 @@ func PerformStartupChecks() {
 	if err := checkYouTubeDLInstallation(); err != nil {
 		logrus.Fatalln("youtube-dl is either not installed or is not discoverable in $PATH. youtube-dl is required to download audio.")
 	}
-	if viper.GetString("defaults.player_command") == "ffmpeg" {
-		if err := checkFfmpegInstallation(); err != nil {
-			logrus.Fatalln("ffmpeg is either not installed or is not discoverable in $PATH. If you would like to use avconv instead, change the defaults.player_command value in the configuration file.")
-		}
-	} else if viper.GetString("defaults.player_command") == "avconv" {
-		if err := checkAvconvInstallation(); err != nil {
-			logrus.Fatalln("avconv is either not installed or is not discoverable in $PATH. If you would like to use ffmpeg instead, change the defaults.player_command value in the configuration file.")
-		}
-	} else {
-		logrus.Fatalln("The player command provided in the configuration file is invalid. Valid choices are: \"ffmpeg\", \"avconv\".")
-	}
 
 	if err := checkAria2Installation(); err != nil {
 		logrus.Warnln("aria2 is not installed or is not discoverable in $PATH. The bot will still partially work, but some services will not work properly.")
@@ -97,15 +86,6 @@ func checkFfmpegInstallation() error {
 	command := exec.Command("ffmpeg", "-version")
 	if err := command.Run(); err != nil {
 		return errors.New("ffmpeg is not properly installed")
-	}
-	return nil
-}
-
-func checkAvconvInstallation() error {
-	logrus.Infoln("Checking avconv installation...")
-	command := exec.Command("avconv", "-version")
-	if err := command.Run(); err != nil {
-		return errors.New("avconv is not properly installed")
 	}
 	return nil
 }

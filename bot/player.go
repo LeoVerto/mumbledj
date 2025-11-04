@@ -189,10 +189,6 @@ func (p *Player) playCurrent() error {
 	DJ.AudioStream.Play()
 	p.mu.Unlock()
 
-	if viper.GetString("defaults.player_command") == "avconv" {
-		DJ.AudioStream.Command = "avconv"
-	}
-
 	if viper.GetBool("queue.announce_new_tracks") && !p.holdOnTrackFlag {
 		message :=
 			`<table width=500>

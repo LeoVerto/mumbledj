@@ -23,9 +23,6 @@ defaults:
     # NOTE: If you wish for the bot to connect to the root channel, set to empty string ("").
     channel: ""
 
-    # Command to use to play audio files. The two supported choices are "ffmpeg" and "avconv".
-    player_command: "ffmpeg"
-
 
 queue:
 
