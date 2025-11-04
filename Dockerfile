@@ -22,6 +22,7 @@ COPY --from=builder /usr/local/bin/mumbledj /usr/local/bin/mumbledj
 RUN addgroup -S mumbledj && adduser -S mumbledj -G mumbledj && chmod 750 /home/mumbledj
 WORKDIR /home/mumbledj
 USER mumbledj
+ENV HOME=/home/mumbledj
 RUN mkdir -p .config/mumbledj && \
     mkdir -p .cache/mumbledj
 
