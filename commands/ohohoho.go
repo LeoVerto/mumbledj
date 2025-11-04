@@ -19,7 +19,7 @@ import (
 
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
-	"layeh.com/gumble/gumble"
+	"github.com/LeoVerto/gumble/gumble"
 )
 
 var samplesList = map[string]int{}

@@ -10,7 +10,7 @@ package commands
 import (
 	"testing"
 
-	"layeh.com/gumble/gumble"
+	"github.com/LeoVerto/gumble/gumble"
 	"go.reik.pl/mumbledj/bot"
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/suite"

@@ -8,7 +8,7 @@
 package commands
 
 import (
-	"layeh.com/gumble/gumble"
+	"github.com/LeoVerto/gumble/gumble"
 	"go.reik.pl/mumbledj/bot"
 	"github.com/spf13/viper"
 )

@@ -11,7 +11,7 @@ import (
 	"fmt"
 
 	"github.com/spf13/viper"
-	"layeh.com/gumble/gumble"
+	"github.com/LeoVerto/gumble/gumble"
 )
 
 // ResetCommand is a command that resets the queue and cache.

@@ -21,7 +21,7 @@ import (
 	"go.reik.pl/mumbledj/assets"
 
 	"github.com/sirupsen/logrus"
-	"layeh.com/gumble/gumbleffmpeg"
+	"github.com/LeoVerto/gumble/gumbleffmpeg"
 )
 
 // Assets embedded in binary

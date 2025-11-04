@@ -46,7 +46,7 @@ import (
 	"errors"
 	"fmt"
 
-	"layeh.com/gumble/gumble"
+	"github.com/LeoVerto/gumble/gumble"
 	"go.reik.pl/mumbledj/interfaces"
 	"github.com/spf13/viper"
 )
@@ -98,7 +98,7 @@ package commands
 import (
 	"testing"
 
-	"layeh.com/gumble/gumbleffmpeg"
+	"github.com/LeoVerto/gumble/gumbleffmpeg"
 	"go.reik.pl/mumbledj/bot"
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/suite"
@@ -198,7 +198,7 @@ import (
 	"time"
 
 	"github.com/antonholmquist/jason"
-	"layeh.com/gumble/gumble"
+	"github.com/LeoVerto/gumble/gumble"
 	"go.reik.pl/mumbledj/bot"
 	"go.reik.pl/mumbledj/interfaces"
 )

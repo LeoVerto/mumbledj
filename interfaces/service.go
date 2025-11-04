@@ -7,7 +7,7 @@
 
 package interfaces
 
-import "layeh.com/gumble/gumble"
+import "github.com/LeoVerto/gumble/gumble"
 
 // Service is an interface of methods to be implemented
 // by various service types, such as YouTube or SoundCloud.

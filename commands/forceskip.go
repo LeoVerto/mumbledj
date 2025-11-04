@@ -12,7 +12,7 @@ import (
 	"fmt"
 
 	"github.com/spf13/viper"
-	"layeh.com/gumble/gumble"
+	"github.com/LeoVerto/gumble/gumble"
 )
 
 // ForceSkipCommand is a command that immediately skips the current track.

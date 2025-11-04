@@ -12,7 +12,7 @@ import (
 	"fmt"
 
 	"github.com/spf13/viper"
-	"layeh.com/gumble/gumble"
+	"github.com/LeoVerto/gumble/gumble"
 )
 
 // PauseCommand is a command that pauses audio playback.

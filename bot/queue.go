@@ -19,7 +19,7 @@ import (
 	"go.reik.pl/mumbledj/interfaces"
 
 	// needed for loading opus codes needed by gumble
-	_ "layeh.com/gumble/opus"
+	_ "github.com/LeoVerto/gumble/opus"
 )
 
 // Queue holds the audio tracks queue itself along with useful methods for
