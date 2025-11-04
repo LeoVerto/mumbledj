@@ -14,7 +14,7 @@ import (
 
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
-	"go.reik.pl/mumbledj/interfaces"
+	"github.com/leoverto/mumbledj/interfaces"
 	"sync"
 )
 

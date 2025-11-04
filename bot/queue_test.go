@@ -15,7 +15,7 @@ import (
 
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/suite"
-	"go.reik.pl/mumbledj/interfaces"
+	"github.com/leoverto/mumbledj/interfaces"
 	"github.com/LeoVerto/gumble/gumbleffmpeg"
 )
 

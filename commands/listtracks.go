@@ -14,7 +14,7 @@ import (
 	"strconv"
 
 	"github.com/LeoVerto/gumble/gumble"
-	"go.reik.pl/mumbledj/interfaces"
+	"github.com/leoverto/mumbledj/interfaces"
 	"github.com/spf13/viper"
 )
 

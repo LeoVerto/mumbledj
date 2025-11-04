@@ -16,7 +16,7 @@ import (
 	"time"
 
 	"github.com/spf13/viper"
-	"go.reik.pl/mumbledj/interfaces"
+	"github.com/leoverto/mumbledj/interfaces"
 
 	// needed for loading opus codes needed by gumble
 	_ "github.com/LeoVerto/gumble/opus"

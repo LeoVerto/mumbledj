@@ -5,4 +5,4 @@
 // and any other packr generated files.
 package assets
 
-import _ "go.reik.pl/mumbledj/packrd"
+import _ "github.com/leoverto/mumbledj/packrd"

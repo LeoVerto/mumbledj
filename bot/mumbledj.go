@@ -22,7 +22,7 @@ import (
 
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
-	"go.reik.pl/mumbledj/interfaces"
+	"github.com/leoverto/mumbledj/interfaces"
 	"github.com/LeoVerto/gumble/gumble"
 	"github.com/LeoVerto/gumble/gumbleffmpeg"
 	"github.com/LeoVerto/gumble/gumbleutil"

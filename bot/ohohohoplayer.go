@@ -18,7 +18,7 @@ import (
 	"sync"
 	"time"
 
-	"go.reik.pl/mumbledj/assets"
+	"github.com/leoverto/mumbledj/assets"
 
 	"github.com/sirupsen/logrus"
 	"github.com/LeoVerto/gumble/gumbleffmpeg"

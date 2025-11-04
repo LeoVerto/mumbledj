@@ -1,4 +1,4 @@
-module go.reik.pl/mumbledj
+module github.com/leoverto/mumbledj
 
 go 1.24.0
 

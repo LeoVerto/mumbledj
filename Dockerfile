@@ -3,10 +3,10 @@ FROM golang:1.24-alpine AS builder
 ARG branch=master
 
 RUN apk add --no-cache ca-certificates make git build-base opus-dev
-COPY . $GOPATH/src/go.reik.pl/mumbledj
+COPY . $GOPATH/src/github.com/leoverto/mumbledj
 
 # add assets, which will be bundled with binary
-WORKDIR $GOPATH/src/go.reik.pl/mumbledj
+WORKDIR $GOPATH/src/github.com/leoverto/mumbledj
 COPY assets assets
 RUN make && make install
 

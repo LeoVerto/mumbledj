@@ -25,8 +25,8 @@ import (
 	"github.com/antonholmquist/jason"
 	duration "github.com/channelmeter/iso8601duration"
 	"github.com/spf13/viper"
-	"go.reik.pl/mumbledj/bot"
-	"go.reik.pl/mumbledj/interfaces"
+	"github.com/leoverto/mumbledj/bot"
+	"github.com/leoverto/mumbledj/interfaces"
 	"github.com/LeoVerto/gumble/gumble"
 )
 

@@ -11,7 +11,7 @@ import (
 	"testing"
 
 	"github.com/LeoVerto/gumble/gumbleffmpeg"
-	"go.reik.pl/mumbledj/bot"
+	"github.com/leoverto/mumbledj/bot"
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/suite"
 )

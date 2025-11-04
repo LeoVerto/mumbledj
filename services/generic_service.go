@@ -12,8 +12,8 @@ import (
 	"regexp"
 
 	"fmt"
-	"go.reik.pl/mumbledj/bot"
-	"go.reik.pl/mumbledj/interfaces"
+	"github.com/leoverto/mumbledj/bot"
+	"github.com/leoverto/mumbledj/interfaces"
 	"github.com/LeoVerto/gumble/gumble"
 )
 

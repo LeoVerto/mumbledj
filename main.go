@@ -15,10 +15,10 @@ import (
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 	"github.com/urfave/cli/v2"
-	"go.reik.pl/mumbledj/assets"
-	"go.reik.pl/mumbledj/bot"
-	"go.reik.pl/mumbledj/commands"
-	"go.reik.pl/mumbledj/services"
+	"github.com/leoverto/mumbledj/assets"
+	"github.com/leoverto/mumbledj/bot"
+	"github.com/leoverto/mumbledj/commands"
+	"github.com/leoverto/mumbledj/services"
 )
 
 // DJ is a global variable that holds various details about the bot's state.
