@@ -16,7 +16,7 @@ RUN     apk add --no-cache \
 COPY    . $GOPATH/src/github.com/leoverto/mumbledj
 WORKDIR $GOPATH/src/github.com/leoverto/mumbledj
 
-RUN     make build-static install
+RUN     make build install
 
 
 # Export binary only from builder environment
@@ -30,12 +30,15 @@ ARG     OPENSSL_VERSION="3.5.4-r0"
 ARG     ARIA2_VERSION="1.37.0-r1"
 # renovate: datasource=repology depName=alpine_3_22/yt-dlp versioning=loose
 ARG     YT_DLP_VERSION="2025.10.22-r0"
+# renovate: datasource=repology depName=alpine_3_22/opus versioning=loose
+ARG     OPUS_VERSION="1.5.2-r1"
 
 RUN     apk add --no-cache \
           ffmpeg=${FFMPEG_VERSION} \
           openssl=${OPENSSL_VERSION} \
           aria2=${ARIA2_VERSION} \
-          yt-dlp=${YT_DLP_VERSION}
+          yt-dlp=${YT_DLP_VERSION} \
+          opus=${OPUS_VERSION}
 
 COPY    --from=builder /usr/local/bin/mumbledj /usr/local/bin/mumbledj
 
