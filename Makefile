@@ -25,7 +25,7 @@ test: ## Runs unit tests for MumbleDJ.
 
 .PHONY: coverage
 coverage: ## Runs coverage tests for MumbleDJ.
-	@env overalls -project=go.reik.pl/mumbledj -covermode=atomic
+	@env overalls -project=github.com/leoverto/mumbledj -covermode=atomic
 	@mv overalls.coverprofile coverage.txt
 
 .PHONY: clean
@@ -38,13 +38,12 @@ install: ## Copies MumbleDJ binary to /usr/local/bin for easy execution.
 
 # .PHONY: dist
 # dist: ## Performs cross-platform builds via gox for multiple Linux platforms.
-# 	@go get -u github.com/mitchellh/gox
+# 	@go install -u github.com/mitchellh/gox
 # 	@gox -cgo -osarch="linux/amd64 linux/386"
 
 .PHONY: assets
 assets: ## Regenerates assets which will be bundled with binary
-	@go install github.com/gobuffalo/packr/v2/packr2@v2.8.3
-	@packr2
+	@go run github.com/gobuffalo/packr/v2/packr2@v2.8.3
 
 .PHONY: help
 help: ## Shows this helptext.

@@ -13,8 +13,8 @@ import (
 	"fmt"
 	"strconv"
 
-	"layeh.com/gumble/gumble"
-	"go.reik.pl/mumbledj/interfaces"
+	"github.com/LeoVerto/gumble/gumble"
+	"github.com/leoverto/mumbledj/interfaces"
 	"github.com/spf13/viper"
 )
 

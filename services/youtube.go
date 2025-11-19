@@ -25,9 +25,9 @@ import (
 	"github.com/antonholmquist/jason"
 	duration "github.com/channelmeter/iso8601duration"
 	"github.com/spf13/viper"
-	"go.reik.pl/mumbledj/bot"
-	"go.reik.pl/mumbledj/interfaces"
-	"layeh.com/gumble/gumble"
+	"github.com/leoverto/mumbledj/bot"
+	"github.com/leoverto/mumbledj/interfaces"
+	"github.com/LeoVerto/gumble/gumble"
 )
 
 var (
@@ -68,6 +68,7 @@ func NewYouTubeService() *YouTube {
 				regexp.MustCompile(`https?:\/\/youtu\.be\/(?P<id>[\w-]+)(\?t=(?P<timestamp>\d*m?\d*s?))?`),
 				regexp.MustCompile(`https?:\/\/youtube\.com\/v\/(?P<id>[\w-]+)(?P<timestamp>\?t=\d*m?\d*s?)?`),
 				regexp.MustCompile(`https?:\/\/www\.youtube\.com\/v\/(?P<id>[\w-]+)(?P<timestamp>\?t=\d*m?\d*s?)?`),
+				regexp.MustCompile(`https?:\/\/www\.youtube\.com\/shorts\/(?P<id>[\w-]+)`),
 			},
 			PlaylistRegex: []*regexp.Regexp{
 				regexp.MustCompile(`https?:\/\/www\.youtube\.com\/playlist\?list=(?P<id>[\w-]+)`),

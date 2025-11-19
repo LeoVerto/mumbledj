@@ -1,6 +1,13 @@
 MumbleDJ Changelog
 ==================
 
+### November 4, 2025 -- `v3.8.0`
+* Fixed Docker container
+* Added YouTube Shorts support
+* Changed audio to stereo
+  * __NOTE__: This may reduce audio quality on servers with a low maximum birate.
+* Updated minimum Go version to 1.24
+
 ### December 15, 2021 -- `v3.7.0`
 * As [youtube-dl](https://github.com/ytdl-org/youtube-dl) is effectively unmaintained, MumbleDJ can now use [yt-dlp](https://github.com/yt-dlp/yt-dlp) instead.
 * Updated the docker image to use `yt-dlp`.

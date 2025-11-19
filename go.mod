@@ -1,10 +1,11 @@
-module go.reik.pl/mumbledj
+module github.com/leoverto/mumbledj
 
 go 1.24.0
 
 toolchain go1.25.4
 
 require (
+	github.com/LeoVerto/gumble v0.0.0-20251104013618-3bac08831f7d
 	github.com/antonholmquist/jason v1.0.0
 	github.com/channelmeter/iso8601duration v0.0.0-20150204201828-8da3af7a2a61
 	github.com/gobuffalo/packr/v2 v2.8.3
@@ -12,7 +13,6 @@ require (
 	github.com/spf13/viper v1.21.0
 	github.com/stretchr/testify v1.11.1
 	github.com/urfave/cli/v2 v2.27.7
-	layeh.com/gumble v0.0.0-20221205141517-d1df60a3cc14
 )
 
 require (

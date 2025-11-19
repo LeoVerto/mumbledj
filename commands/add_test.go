@@ -10,8 +10,8 @@ package commands
 import (
 	"testing"
 
-	"layeh.com/gumble/gumbleffmpeg"
-	"go.reik.pl/mumbledj/bot"
+	"github.com/LeoVerto/gumble/gumbleffmpeg"
+	"github.com/leoverto/mumbledj/bot"
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/suite"
 )

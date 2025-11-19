@@ -15,9 +15,9 @@ import (
 	"time"
 
 	"github.com/antonholmquist/jason"
-	"layeh.com/gumble/gumble"
-	"go.reik.pl/mumbledj/bot"
-	"go.reik.pl/mumbledj/interfaces"
+	"github.com/LeoVerto/gumble/gumble"
+	"github.com/leoverto/mumbledj/bot"
+	"github.com/leoverto/mumbledj/interfaces"
 )
 
 // Mixcloud is a wrapper around the Mixcloud API.

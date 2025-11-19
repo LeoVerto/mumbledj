@@ -14,7 +14,7 @@ import (
 
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
-	"go.reik.pl/mumbledj/interfaces"
+	"github.com/leoverto/mumbledj/interfaces"
 	"sync"
 )
 
@@ -32,11 +32,6 @@ func (yt *YouTubeDL) Download(t interfaces.Track) error {
 	yt.mutex.Lock()
 	defer yt.mutex.Unlock()
 
-	player := "--prefer-ffmpeg"
-	if viper.GetString("defaults.player_command") == "avconv" {
-		player = "--prefer-avconv"
-	}
-
 	filepath := os.ExpandEnv(viper.GetString("cache.directory") + "/" + t.GetFilename())
 
 	// Determine which format to use.
@@ -51,9 +46,9 @@ func (yt *YouTubeDL) Download(t interfaces.Track) error {
 	if _, err := os.Stat(filepath); os.IsNotExist(err) {
 		var cmd *exec.Cmd
 		if t.GetService() == "Mixcloud" {
-			cmd = exec.Command(yt.command, "--verbose", "--no-mtime", "--output", filepath, "--format", format, "--external-downloader", "aria2c", player, t.GetURL())
+			cmd = exec.Command(yt.command, "--verbose", "--no-mtime", "--output", filepath, "--format", format, "--external-downloader", "aria2c", t.GetURL())
 		} else {
-			cmd = exec.Command(yt.command, "--verbose", "--no-mtime", "--output", filepath, "--format", format, player, t.GetURL())
+			cmd = exec.Command(yt.command, "--verbose", "--no-mtime", "--output", filepath, "--format", format, t.GetURL())
 		}
 		output, err := cmd.CombinedOutput()
 		if err != nil {

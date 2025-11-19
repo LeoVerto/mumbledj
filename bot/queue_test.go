@@ -15,8 +15,8 @@ import (
 
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/suite"
-	"go.reik.pl/mumbledj/interfaces"
-	"layeh.com/gumble/gumbleffmpeg"
+	"github.com/leoverto/mumbledj/interfaces"
+	"github.com/LeoVerto/gumble/gumbleffmpeg"
 )
 
 type QueueTestSuite struct {

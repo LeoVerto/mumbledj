@@ -11,9 +11,9 @@ import (
 	"fmt"
 	"testing"
 
-	"layeh.com/gumble/gumble"
-	"layeh.com/gumble/gumbleffmpeg"
-	"go.reik.pl/mumbledj/bot"
+	"github.com/LeoVerto/gumble/gumble"
+	"github.com/LeoVerto/gumble/gumbleffmpeg"
+	"github.com/leoverto/mumbledj/bot"
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/suite"
 )

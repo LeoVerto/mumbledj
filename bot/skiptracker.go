@@ -12,7 +12,7 @@ import (
 	"sync"
 
 	"github.com/spf13/viper"
-	"layeh.com/gumble/gumble"
+	"github.com/LeoVerto/gumble/gumble"
 )
 
 // SkipTracker keeps track of the list of users who have skipped the current

@@ -7,7 +7,7 @@
 
 package interfaces
 
-import "layeh.com/gumble/gumble"
+import "github.com/LeoVerto/gumble/gumble"
 
 // SkipTracker is the interface which should be interacted with for skip operations.
 // Using the SkipTracker interface ensures thread safety.

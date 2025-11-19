@@ -12,9 +12,9 @@ import (
 	"regexp"
 
 	"fmt"
-	"go.reik.pl/mumbledj/bot"
-	"go.reik.pl/mumbledj/interfaces"
-	"layeh.com/gumble/gumble"
+	"github.com/leoverto/mumbledj/bot"
+	"github.com/leoverto/mumbledj/interfaces"
+	"github.com/LeoVerto/gumble/gumble"
 )
 
 // GenericService is a generic struct that should be embedded

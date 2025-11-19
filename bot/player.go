@@ -18,11 +18,11 @@ import (
 
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
-	"go.reik.pl/mumbledj/interfaces"
-	"layeh.com/gumble/gumbleffmpeg"
+	"github.com/leoverto/mumbledj/interfaces"
+	"github.com/LeoVerto/gumble/gumbleffmpeg"
 
 	// needed for loading opus codes needed by gumble
-	_ "layeh.com/gumble/opus"
+	_ "github.com/LeoVerto/gumble/opus"
 )
 
 // Player should be special goroutine, which prefetch sound from videos and plays audio stream
@@ -188,10 +188,6 @@ func (p *Player) playCurrent() error {
 	DJ.AudioStream.Volume = DJ.Volume
 	DJ.AudioStream.Play()
 	p.mu.Unlock()
-
-	if viper.GetString("defaults.player_command") == "avconv" {
-		DJ.AudioStream.Command = "avconv"
-	}
 
 	if viper.GetBool("queue.announce_new_tracks") && !p.holdOnTrackFlag {
 		message :=

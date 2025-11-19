@@ -5,7 +5,6 @@ FROM    golang:1.25.4-alpine@sha256:d3f0cf7723f3429e3f9ed846243970b20a2de7bae6a5
 ARG     OPUS_VERSION="1.5.2-r1"
 
 ARG     branch=master
-ENV     GO111MODULE=on
 
 RUN     apk add --no-cache \
           ca-certificates \
@@ -14,10 +13,10 @@ RUN     apk add --no-cache \
           build-base \
           opus-dev=${OPUS_VERSION}
 
-COPY    . $GOPATH/src/go.reik.pl/mumbledj
+COPY    . $GOPATH/src/github.com/leoverto/mumbledj
 
 # add assets, which will be bundled with binary
-WORKDIR $GOPATH/src/go.reik.pl/mumbledj
+WORKDIR $GOPATH/src/github.com/leoverto/mumbledj
 COPY    assets assets
 RUN     make && make install
 
@@ -46,6 +45,7 @@ COPY    --from=builder /usr/local/bin/mumbledj /usr/local/bin/mumbledj
 RUN     addgroup -S mumbledj && adduser -S mumbledj -G mumbledj && chmod 750 /home/mumbledj
 WORKDIR /home/mumbledj
 USER    mumbledj
+ENV     HOME=/home/mumbledj
 
 RUN     mkdir -p .config/mumbledj && \
         mkdir -p .cache/mumbledj

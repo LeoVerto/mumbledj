@@ -16,10 +16,10 @@ import (
 	"time"
 
 	"github.com/spf13/viper"
-	"go.reik.pl/mumbledj/interfaces"
+	"github.com/leoverto/mumbledj/interfaces"
 
 	// needed for loading opus codes needed by gumble
-	_ "layeh.com/gumble/opus"
+	_ "github.com/LeoVerto/gumble/opus"
 )
 
 // Queue holds the audio tracks queue itself along with useful methods for

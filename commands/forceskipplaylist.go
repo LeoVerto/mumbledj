@@ -12,8 +12,8 @@ import (
 	"fmt"
 
 	"github.com/spf13/viper"
-	"go.reik.pl/mumbledj/interfaces"
-	"layeh.com/gumble/gumble"
+	"github.com/leoverto/mumbledj/interfaces"
+	"github.com/LeoVerto/gumble/gumble"
 )
 
 // ForceSkipPlaylistCommand is a command that immediately skips the current
