@@ -31,6 +31,8 @@ var version string
 // Assets is global variable that allows access to config and sound assets
 var Assets = assets.Assets
 
+const assetConfigName = "config.yaml.example"
+
 func init() {
 	DJ.Commands = commands.Commands
 	DJ.AvailableServices = services.Services
@@ -233,7 +235,7 @@ func main() {
 }
 
 func createConfigWhenNotExists() {
-	configFile, err := Assets.Find("config.yaml")
+	configFile, err := Assets.Find(assetConfigName)
 	if err != nil {
 		logrus.Warnln("An error occurred while accessing config binary data. A new config file will not be written.")
 	} else {
@@ -256,9 +258,9 @@ func createNewConfigIfNeeded() {
 	newConfigPath := os.ExpandEnv("$HOME/.config/mumbledj/config.yaml.new")
 
 	// Check if we should write an updated config file to config.yaml.new.
-	if asset, err := Assets.Find("config.yaml"); err == nil {
+	if asset, err := Assets.Find(assetConfigName); err == nil {
 
-		assetF, _ := Assets.Open("config.yaml")
+		assetF, _ := Assets.Open(assetConfigName)
 		defer assetF.Close()
 		assetInfo, _ := assetF.Stat()
 		if configFile, err := os.Open(os.ExpandEnv("$HOME/.config/mumbledj/config.yaml")); err == nil {

@@ -8,8 +8,8 @@ VERSION != git describe --tags | sed 's/\([^-]*-\)g/r\1/'
 export GO111MODULE=on
 
 .PHONY: all all-static
-all: assets build ## Default action. Compile resources and builds MumbleDJ.
-all-static: assets build-static
+all: build ## Default action. Compile resources and builds MumbleDJ.
+all-static: build-static
 
 .PHONY: build
 build: *.go  ## Builds MumbleDJ.
@@ -40,10 +40,6 @@ install: ## Copies MumbleDJ binary to /usr/local/bin for easy execution.
 # dist: ## Performs cross-platform builds via gox for multiple Linux platforms.
 # 	@go install -u github.com/mitchellh/gox
 # 	@gox -cgo -osarch="linux/amd64 linux/386"
-
-.PHONY: assets
-assets: ## Regenerates assets which will be bundled with binary
-	@go run github.com/gobuffalo/packr/v2/packr2@v2.8.3
 
 .PHONY: help
 help: ## Shows this helptext.

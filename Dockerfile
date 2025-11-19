@@ -14,11 +14,9 @@ RUN     apk add --no-cache \
           opus-dev=${OPUS_VERSION}
 
 COPY    . $GOPATH/src/github.com/leoverto/mumbledj
-
-# add assets, which will be bundled with binary
 WORKDIR $GOPATH/src/github.com/leoverto/mumbledj
-COPY    assets assets
-RUN     make && make install
+
+RUN     make build-static install
 
 
 # Export binary only from builder environment
