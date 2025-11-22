@@ -29,7 +29,7 @@ ARG     OPENSSL_VERSION="3.5.4-r0"
 # renovate: datasource=repology depName=alpine_3_22/aria2 versioning=loose
 ARG     ARIA2_VERSION="1.37.0-r1"
 # renovate: datasource=repology depName=alpine_3_22/yt-dlp versioning=loose
-ARG     YT_DLP_VERSION="2025.10.22-r0"
+ARG     YT_DLP_VERSION="2025.11.12-r0"
 # renovate: datasource=repology depName=alpine_3_22/opus versioning=loose
 ARG     OPUS_VERSION="1.5.2-r1"
 
