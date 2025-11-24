@@ -1,0 +1,30 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:best-practices",
+    ":semanticCommits",
+    "docker:enableMajor"
+  ],
+  "prHourlyLimit": 0,
+  "forkProcessing": "enabled",
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/(^|/)Dockerfile$/"
+      ],
+      "matchStrings": [
+        "\\s*#\\s*renovate:\\s*datasource=(?<datasource>.*?)\\s*depName=(?<depName>.*?)(\\s*versioning=(?<versioning>.*?))?\\s(ENV|ARG)\\s.*?_VERSION=\"?(?<currentValue>.*?)\"?\\s"
+      ],
+      "versioningTemplate": "{{#if versioning}}{{versioning}}{{else}}semver{{/if}}"
+    }
+  ],
+  "packageRules": [
+    {
+      "matchDatasources": [
+        "repology"
+      ],
+      "groupName": "OS Packages"
+    }
+  ]
+}

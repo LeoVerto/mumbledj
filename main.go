@@ -8,17 +8,18 @@
 package main
 
 import (
+	"context"
 	"io/ioutil"
 	"os"
 	"strings"
 
-	"github.com/sirupsen/logrus"
-	"github.com/spf13/viper"
-	"github.com/urfave/cli/v2"
 	"github.com/leoverto/mumbledj/assets"
 	"github.com/leoverto/mumbledj/bot"
 	"github.com/leoverto/mumbledj/commands"
 	"github.com/leoverto/mumbledj/services"
+	"github.com/sirupsen/logrus"
+	"github.com/spf13/viper"
+	"github.com/urfave/cli/v3"
 )
 
 // DJ is a global variable that holds various details about the bot's state.
@@ -29,6 +30,8 @@ var version string
 
 // Assets is global variable that allows access to config and sound assets
 var Assets = assets.Assets
+
+const assetConfigName = "config.yaml.example"
 
 func init() {
 	DJ.Commands = commands.Commands
@@ -49,11 +52,12 @@ func init() {
 }
 
 func main() {
-	app := cli.NewApp()
-	app.Name = "MumbleDJ"
-	app.Usage = "A Mumble bot that plays audio from various media sites."
-	app.Version = DJ.Version
-	app.Flags = []cli.Flag{
+	cmd := &cli.Command{
+		Name:    "MumbleDJ",
+		Usage:   "A Mumble bot that plays audio from various media sites.",
+		Version: DJ.Version,
+	}
+	cmd.Flags = []cli.Flag{
 		&cli.StringFlag{
 			Name:    "config",
 			Aliases: []string{"c"},
@@ -132,9 +136,9 @@ func main() {
 			Hidden: true,
 		}
 	}
-	app.Flags = append(app.Flags, hiddenFlags...)
+	cmd.Flags = append(cmd.Flags, hiddenFlags...)
 
-	app.Action = func(c *cli.Context) error {
+	cmd.Action = func(ctx context.Context, c *cli.Command) error {
 		if c.Bool("debug") {
 			logrus.SetLevel(logrus.DebugLevel)
 			//Uncomment to show debug messages from Packr2
@@ -227,11 +231,11 @@ func main() {
 		return nil
 	}
 
-	app.Run(os.Args)
+	_ = cmd.Run(context.Background(), os.Args)
 }
 
 func createConfigWhenNotExists() {
-	configFile, err := Assets.Find("config.yaml")
+	configFile, err := Assets.Find(assetConfigName)
 	if err != nil {
 		logrus.Warnln("An error occurred while accessing config binary data. A new config file will not be written.")
 	} else {
@@ -254,9 +258,9 @@ func createNewConfigIfNeeded() {
 	newConfigPath := os.ExpandEnv("$HOME/.config/mumbledj/config.yaml.new")
 
 	// Check if we should write an updated config file to config.yaml.new.
-	if asset, err := Assets.Find("config.yaml"); err == nil {
+	if asset, err := Assets.Find(assetConfigName); err == nil {
 
-		assetF, _ := Assets.Open("config.yaml")
+		assetF, _ := Assets.Open(assetConfigName)
 		defer assetF.Close()
 		assetInfo, _ := assetF.Stat()
 		if configFile, err := os.Open(os.ExpandEnv("$HOME/.config/mumbledj/config.yaml")); err == nil {
